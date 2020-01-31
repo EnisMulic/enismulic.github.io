@@ -1,0 +1,47 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    height: auto;
+}
+
+header
+{
+    top: 0;
+    position: sticky;
+    display: flex;
+}
+
+header > a
+{
+    text-decoration: none;
+}
+
+header > div
+{
+    margin: 10px;
+}
+
+main
+{
+    text-align: center;
+}
+
+section#Projects
+{
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    
+}
+
+div.Project
+{
+    height: 300px;
+    width: auto;
+    border: 1px solid black;
+    margin: 10px;
+}
