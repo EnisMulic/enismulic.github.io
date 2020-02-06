@@ -7,41 +7,75 @@
 body
 {
     height: auto;
+    background-color: #0A192F;
+    color: white;
+    
 }
 
-header
+#Name
 {
-    top: 0;
-    position: sticky;
-    display: flex;
+    font-size: 64px;
+    font-family: 'Racing Sans One', cursive;
+    text-align: center;
 }
 
-header > a
+#Link
 {
+    text-align: center;
+    color: white;
+}
+
+a
+{
+    color: white;
     text-decoration: none;
-}
-
-header > div
-{
-    margin: 10px;
 }
 
 main
 {
-    text-align: center;
+    display: flex;
 }
 
-section#Projects
+aside
+{
+    padding-top: 30px;
+    width: 25%;
+    height: 100%;
+    top: 0;
+    position: sticky;
+}
+
+div#Skills
 {
     display: grid;
-    grid-template-columns: 30% 30% 30%;
-    
+    grid-template-columns: 33% 33% 33%;
+    text-align: center;
+    margin-top: 40px;
 }
 
-div.Project
+i[class^="devicon"]
 {
-    height: 300px;
-    width: auto;
-    border: 1px solid black;
-    margin: 10px;
+    font-size: 64px;
+    margin: 15px;
+    color: white;
+}
+
+section
+{
+    margin: 50px 20px 0px 20px;
+    width: 75%;
+    overflow: auto;
+}
+
+div.Preview
+{
+    margin: 20px;
+    height: 320px;
+    border: 1px solid white;
+}
+
+div.Description
+{
+    margin: 20px;
+    text-align: justify;
 }
