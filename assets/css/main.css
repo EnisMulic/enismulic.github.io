@@ -23,12 +23,23 @@ body
 {
     text-align: center;
     color: white;
+    font-family: 'Racing Sans One', cursive;
+    font-size: 24px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: center;
+}
+
+#Link div
+{
+    margin: 10px auto 0 auto;
 }
 
 a
 {
     color: white;
     text-decoration: none;
+    
 }
 
 main
@@ -80,7 +91,7 @@ div.Description
     text-align: justify;
 }
 
- @media (max-width: 600px)
+ @media (max-width: 768px)
  {
      main
      {
@@ -91,7 +102,6 @@ div.Description
      aside
      {
          position: unset;
-         grid-template-columns: 50% 50%;
          width: 100%;
      }
 
@@ -102,3 +112,12 @@ div.Description
          margin: auto;
      }
  }
+
+@media (max-width: 600px)
+{
+    div#Skills
+    {
+        display: grid;    
+        grid-template-columns: 50% 50%;
+    }
+}
