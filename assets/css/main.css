@@ -91,27 +91,40 @@ div.Description
     text-align: justify;
 }
 
- @media (max-width: 768px)
- {
-     main
-     {
-         flex-direction: column;
-         text-align: center;
-     }
+@media (max-width: 890px)
+{
+    div#Skills
+    {
+        display: grid;    
+        grid-template-columns: 50% 50%;
+    }
+}
 
-     aside
-     {
-         position: unset;
-         width: 100%;
-     }
+@media (max-width: 768px)
+{
+    main
+    {
+        flex-direction: column;
+        text-align: center;
+    }
+    aside
+    {
+        position: unset;
+        width: 100%;
+    }
+    section
+    {
+        width: 95%;
+        overflow: unset;
+        margin: auto;
+    }
 
-     section
-     {
-         width: 95%;
-         overflow: unset;
-         margin: auto;
-     }
- }
+    div#Skills
+    {
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+    }
+}
 
 @media (max-width: 600px)
 {
