@@ -9,9 +9,17 @@ body
     height: auto;
     background-color: #0A192F;
     color: white;
+    font-style: normal;
+    font-family: 'Racing Sans One', cursive;
     
 }
 
+main
+{
+    display: flex;
+}
+
+/* Aside */
 #Name
 {
     font-size: 64px;
@@ -42,10 +50,6 @@ a
     
 }
 
-main
-{
-    display: flex;
-}
 
 aside
 {
@@ -71,9 +75,11 @@ i[class^="devicon"]
     color: white;
 }
 
+/* Projects section */
 section
 {
-    margin: 50px 20px 0px 20px;
+    
+    margin: 40px 20px 0px 20px;
     width: 75%;
     overflow: auto;
 }
@@ -81,8 +87,14 @@ section
 div.Preview
 {
     margin: 20px;
-    height: 320px;
+    height: 370px;
     border: 1px solid white;
+}
+
+div.Project h2
+{
+    text-align: center;
+    font-size: 50px;
 }
 
 div.Description
@@ -90,6 +102,8 @@ div.Description
     margin: 20px;
     text-align: justify;
 }
+
+/* Responsive */
 
 @media (max-width: 890px)
 {
