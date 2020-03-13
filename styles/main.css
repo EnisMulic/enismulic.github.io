@@ -16,18 +16,19 @@ body
 
 main
 {
-    display: flex;
+    width:70%;
+    margin:auto;
 }
 
-/* Aside */
-#Name
+/* header */
+#name
 {
     font-size: 64px;
     font-family: 'Racing Sans One', cursive;
     text-align: center;
 }
 
-#Link
+#link
 {
     text-align: center;
     color: white;
@@ -38,7 +39,7 @@ main
     text-align: center;
 }
 
-#Link div
+#link div
 {
     margin: 10px auto 0 auto;
 }
@@ -47,23 +48,20 @@ a
 {
     color: white;
     text-decoration: none;
-    
 }
 
 
-aside
+header
 {
     padding-top: 30px;
-    width: 25%;
     height: 100%;
     top: 0;
-    position: sticky;
 }
 
-div#Skills
+div#skills
 {
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: repeat(3, 33%);
     text-align: center;
     margin-top: 40px;
 }
@@ -80,71 +78,49 @@ section
 {
     
     margin: 40px 20px 0px 20px;
-    width: 75%;
     overflow: auto;
 }
 
-div.Preview
+div.preview
 {
     margin: 20px;
     height: 370px;
     border: 1px solid white;
 }
 
-div.Project h2
+div.project h2
 {
     text-align: center;
     font-size: 50px;
 }
 
-div.Description
+div.description
 {
     margin: 20px;
     text-align: justify;
 }
 
 /* Responsive */
-
-@media (max-width: 890px)
-{
-    div#Skills
-    {
-        display: grid;    
-        grid-template-columns: 50% 50%;
-    }
-}
-
-@media (max-width: 768px)
+@media (max-width: 786px)
 {
     main
     {
-        flex-direction: column;
-        text-align: center;
-    }
-    aside
-    {
-        position: unset;
-        width: 100%;
-    }
-    section
-    {
-        width: 95%;
-        overflow: unset;
+        width: 90%;
         margin: auto;
-    }
-
-    div#Skills
-    {
-        display: grid;
-        grid-template-columns: 33% 33% 33%;
     }
 }
 
+
 @media (max-width: 600px)
 {
-    div#Skills
+    main
+    {
+        width: 100%;
+        margin: auto;
+    }
+    div#skills
     {
         display: grid;    
-        grid-template-columns: 50% 50%;
+        grid-template-columns: repeat(2, 50%);
     }
 }
