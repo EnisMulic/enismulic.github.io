@@ -100,6 +100,21 @@ div.description
     text-align: justify;
 }
 
+/* Scroll button */
+a#scroll-button
+{
+    float: right;
+    margin-left: 93%;
+}
+
+a#scroll-button img
+{
+    height: 64px;
+    width: 64px;
+    margin: 20px;
+}
+
+
 /* Responsive */
 @media (max-width: 786px)
 {
