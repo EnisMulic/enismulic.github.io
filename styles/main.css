@@ -14,6 +14,12 @@ body
     
 }
 
+header
+{
+    width:70%;
+    margin:auto;
+}
+
 main
 {
     width:70%;
@@ -76,9 +82,7 @@ i[class^="devicon"]
 /* Projects section */
 section
 {
-    
     margin: 40px 20px 0px 20px;
-    overflow: auto;
 }
 
 div.preview
@@ -103,7 +107,6 @@ div.description
 /* Scroll button */
 a#scroll-button
 {
-    float: right;
     margin-left: 93%;
 }
 
@@ -112,6 +115,8 @@ a#scroll-button img
     height: 64px;
     width: 64px;
     margin: 20px;
+    top: 90%;
+    position: sticky;
 }
 
 
