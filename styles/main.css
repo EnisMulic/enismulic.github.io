@@ -101,7 +101,21 @@ div.project h2
 div.description
 {
     margin: 20px;
+    margin-left: 40px;
+    font-size: 20px;
     text-align: justify;
+}
+
+div.column-list
+{
+    margin: 10px;
+    display: flex;
+}
+
+div.column-list ul
+{
+    padding: 20px;
+    width: 50%;
 }
 
 /* Scroll button */
