@@ -132,6 +132,17 @@ a#scroll-button img
     position: sticky;
 }
 
+.single-technology {
+    display: inline-block;
+    font-size: 80%;
+    padding: .3125rem .9375rem;
+    background-color: #4e4d50;
+    color: #fff;
+    border-radius: .625rem;
+    margin-right: .3125rem;
+    margin-bottom: .3125rem;
+}
+
 
 /* Responsive */
 @media (max-width: 786px)
