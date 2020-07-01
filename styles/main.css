@@ -92,6 +92,11 @@ div.preview
     border: 1px solid white;
 }
 
+div.project
+{
+    padding-bottom: 70px;
+}
+
 div.project h2
 {
     text-align: center;
@@ -115,32 +120,6 @@ div.column-list ul
 {
     padding: 20px;
     width: 50%;
-}
-
-/* Scroll button */
-a#scroll-button
-{
-    margin-left: 93%;
-}
-
-a#scroll-button img
-{
-    height: 64px;
-    width: 64px;
-    margin: 20px;
-    top: 90%;
-    position: sticky;
-}
-
-.single-technology {
-    display: inline-block;
-    font-size: 80%;
-    padding: .3125rem .9375rem;
-    background-color: #4e4d50;
-    color: #fff;
-    border-radius: .625rem;
-    margin-right: .3125rem;
-    margin-bottom: .3125rem;
 }
 
 
