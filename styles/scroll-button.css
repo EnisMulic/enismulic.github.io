@@ -11,3 +11,20 @@ a#scroll-button img
     top: 90%;
     position: sticky;
 }
+
+@media (max-width: 786px)
+{
+    a#scroll-button
+    {
+        margin-left: 0;
+    }
+    a#scroll-button img
+    {
+        /* height: 48px;
+        width: 48px;
+        margin: 10px;
+        top: 90%;
+        position: sticky; */
+        visibility: hidden;
+    }
+}

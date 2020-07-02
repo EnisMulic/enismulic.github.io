@@ -110,17 +110,12 @@ div.description
     text-align: justify;
 }
 
-div.column-list
+/* Tags */
+.technology-wrapper
 {
-    margin: 10px;
-    display: flex;
+    padding-left: 60px;
 }
 
-div.column-list ul
-{
-    padding: 20px;
-    width: 50%;
-}
 
 
 /* Responsive */
