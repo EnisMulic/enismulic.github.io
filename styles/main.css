@@ -40,8 +40,7 @@ main
     color: white;
     font-family: 'Racing Sans One', cursive;
     font-size: 24px;
-    display: grid;
-    grid-template-columns: 50% 50%;
+    display: flex;
     text-align: center;
 }
 
