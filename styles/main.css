@@ -102,6 +102,11 @@ div.project h2
     font-size: 50px;
 }
 
+a i.project-icon
+{
+    font-size: 40px;
+}
+
 div.description
 {
     margin: 20px 20px 20px 40px;
