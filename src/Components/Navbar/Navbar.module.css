@@ -2,3 +2,9 @@
   display: flex;
   gap: 10px;
 }
+
+.nav div {
+  font-size: 1.2rem;
+  padding: 2px;
+  margin: 1rem;
+}
