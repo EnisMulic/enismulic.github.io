@@ -1,13 +1,16 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import style from "./Navbar.module.css";
 
 const Navbar = () => {
   return (
     <nav className={style.nav}>
-      <div>Home</div>
-      <div>Portfolio</div>
-      <div>Contact</div>
+      <NavLink exact to="/">
+        Home
+      </NavLink>
+      <NavLink to="/portfolio">Portfolio</NavLink>
+      <NavLink to="/contact">Contact</NavLink>
     </nav>
   );
 };

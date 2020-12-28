@@ -3,7 +3,11 @@ import React from "react";
 import style from "./Home.module.css";
 
 const Home = () => {
-  return <div></div>;
+  return (
+    <div>
+      <h1>Home Placeholder</h1>
+    </div>
+  );
 };
 
 export default Home;
