@@ -65,6 +65,6 @@
 }
 
 .hexagon > svg {
-  height: 75%;
+  height: 100%;
   transition: var(--hex-transition);
 }
