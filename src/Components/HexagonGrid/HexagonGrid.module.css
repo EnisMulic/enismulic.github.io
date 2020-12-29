@@ -1,0 +1,23 @@
+:root {
+  /* Change this to change the appearance of the hexaons */
+  --hex-width: 100px;
+  --hex-between: 10px;
+
+  /* Other hexagon dimentions */
+  --hex-height: calc(var(--hex-width) / 1.73 /* sqrt(3) */);
+  --hex-margin: calc(var(--hex-width) / 2);
+  --hex-border: calc(var(--hex-margin) / 1.73 /* sqrt(3) */);
+  --hex-transition: all 0.2s ease;
+}
+
+/* Hexagons */
+.HexagonGrid {
+  margin: 10px;
+  display: grid;
+  grid-template-columns: var(--hex-width) var(--hex-width) var(--hex-width) var(
+      --hex-width
+    );
+  grid-auto-rows: calc(var(--hex-width) - 28.87px / 2);
+  grid-gap: var(--hex-between) var(--hex-between);
+  padding-bottom: var(--hex-border);
+}

@@ -1,0 +1,70 @@
+:root {
+  /* Change this to change the appearance of the hexaons */
+  --hex-width: 100px;
+  --hex-between: 10px;
+
+  /* Other hexagon dimentions */
+  --hex-height: calc(var(--hex-width) / 1.73 /* sqrt(3) */);
+  --hex-margin: calc(var(--hex-width) / 2);
+  --hex-border: calc(var(--hex-margin) / 1.73 /* sqrt(3) */);
+  --hex-transition: all 0.2s ease;
+
+  /* Colors */
+  --color-hex-default: #2a68c4;
+  --color-hex-hover: #0a192f;
+}
+
+.hexagon {
+  align-items: center;
+  background-color: var(--color-hex-default);
+  cursor: pointer;
+  display: flex;
+  fill: white;
+  height: var(--hex-height);
+  justify-content: center;
+  margin: var(--hex-border) 0;
+  position: relative;
+  transition: var(--hex-transition);
+  width: var(--hex-width);
+}
+
+.hexagon::after,
+.hexagon::before {
+  border-left: var(--hex-margin) solid transparent;
+  border-right: var(--hex-margin) solid transparent;
+  content: "";
+  left: 0;
+  position: absolute;
+  transition: var(--hex-transition);
+  width: 0;
+}
+.hexagon::after {
+  border-top: var(--hex-border) solid var(--color-hex-default);
+  top: 100%;
+  width: 0;
+}
+.hexagon::before {
+  border-bottom: var(--hex-border) solid var(--color-hex-default);
+  bottom: 100%;
+}
+
+.hexagon:hover {
+  background-color: var(--color-hex-hover);
+}
+.hexagon:hover::after,
+.hexagon:hover::before {
+  border-top-color: var(--color-hex-hover);
+  border-bottom-color: var(--color-hex-hover);
+}
+
+.hexagon:nth-child(8n + 5),
+.hexagon:nth-child(8n + 6),
+.hexagon:nth-child(8n + 7),
+.hexagon:nth-child(8n + 8) {
+  margin-left: calc(var(--hex-width) / 2 + var(--hex-between) / 2);
+}
+
+.hexagon > svg {
+  height: 75%;
+  transition: var(--hex-transition);
+}

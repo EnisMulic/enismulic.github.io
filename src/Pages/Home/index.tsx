@@ -2,10 +2,12 @@ import React from "react";
 
 import style from "./Home.module.css";
 
+import HexagonGrid from "../../Components/HexagonGrid";
+
 const Home = () => {
   return (
     <div>
-      <h1>Home Placeholder</h1>
+      <HexagonGrid />
     </div>
   );
 };
