@@ -1,6 +1,6 @@
 import React from "react";
 
-import style from "./Contact.module.css";
+import style from "./Portfolio.module.css";
 
 const Portfolio = () => {
   return (

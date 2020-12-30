@@ -1,17 +1,16 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-import Home from "./Pages/Home";
-import Portfolio from "./Pages/Portfolio";
-import Contact from "./Pages/Contact";
+import Home from './pages/Home';
+import Portfolio from './pages/Portfolio';
+import Contact from './pages/Contact';
 
-import "./App.css";
-
-import Navbar from "./Components/Navbar";
+import styles from './App.module.css';
+import Navbar from './components/Navbar';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Navbar />
       <Switch>
         <Route exact path="/">

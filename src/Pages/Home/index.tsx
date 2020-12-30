@@ -1,13 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import style from "./Home.module.css";
+import style from './Home.module.css';
 
-import HexagonGrid from "../../Components/HexagonGrid";
+import HexagonGrid from '../../components/HexagonGrid';
 
 const Home = () => {
   return (
     <div>
-      <HexagonGrid />
+      <div className={style.Skills}>
+        <HexagonGrid />
+      </div>
     </div>
   );
 };

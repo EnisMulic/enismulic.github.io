@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import style from "./HexagonGrid.module.css";
+import style from './HexagonGrid.module.css';
 
-import Hexagon from "../Hexagon";
+import Hexagon from '../Hexagon';
 
 const HexagonGrid = () => {
   return (
