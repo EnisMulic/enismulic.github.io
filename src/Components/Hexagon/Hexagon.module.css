@@ -32,7 +32,7 @@
 .hexagon::before {
   border-left: var(--hex-margin) solid transparent;
   border-right: var(--hex-margin) solid transparent;
-  content: "";
+  content: '';
   left: 0;
   position: absolute;
   transition: var(--hex-transition);
@@ -55,13 +55,6 @@
 .hexagon:hover::before {
   border-top-color: var(--color-hex-hover);
   border-bottom-color: var(--color-hex-hover);
-}
-
-.hexagon:nth-child(8n + 5),
-.hexagon:nth-child(8n + 6),
-.hexagon:nth-child(8n + 7),
-.hexagon:nth-child(8n + 8) {
-  margin-left: calc(var(--hex-width) / 2 + var(--hex-between) / 2);
 }
 
 .hexagon > svg {

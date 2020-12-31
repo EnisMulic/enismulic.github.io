@@ -21,3 +21,10 @@
   grid-gap: var(--hex-between) var(--hex-between);
   padding-bottom: var(--hex-border);
 }
+
+.HexagonGrid > *:nth-child(8n + 5),
+.HexagonGrid > *:nth-child(8n + 6),
+.HexagonGrid > *:nth-child(8n + 7),
+.HexagonGrid > *:nth-child(8n + 8) {
+  margin-left: calc(var(--hex-width) / 2 + var(--hex-between) / 2);
+}
