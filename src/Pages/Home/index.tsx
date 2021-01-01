@@ -6,10 +6,11 @@ import HexagonGrid from '../../components/HexagonGrid';
 
 const Home = () => {
   return (
-    <div>
+    <div className={style.Home}>
       <div className={style.Skills}>
         <HexagonGrid />
       </div>
+      <div></div>
     </div>
   );
 };
