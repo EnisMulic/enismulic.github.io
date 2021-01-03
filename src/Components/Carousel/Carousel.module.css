@@ -18,7 +18,7 @@
   margin: 0 auto;
   margin-top: 4rem;
   width: 80vw;
-  height: 400px;
+  height: 650px;
   max-width: 700px;
   text-align: center;
   position: relative;
@@ -29,7 +29,7 @@
 .prev,
 .next {
   position: absolute;
-  top: 200px;
+  top: 215px;
   transform: translateY(-50%);
   background: transparent;
   color: var(--clr-white);
