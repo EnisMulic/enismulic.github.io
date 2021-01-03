@@ -1,4 +1,6 @@
-const projects = [
+import Project from './types/Project';
+
+const projects: Array<Project> = [
   {
     id: 1,
     image:
