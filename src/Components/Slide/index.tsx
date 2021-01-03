@@ -2,9 +2,9 @@ import React from 'react';
 import 'devicon';
 import style from './Slide.module.css';
 
-import Slide from '../../types/Slide';
+import SlideType from '../../types/Slide';
 
-const Slide = ({ position, data }: Slide) => {
+const Slide = ({ position, data }: SlideType) => {
   return (
     <article className={[style.Article, style[position]].join(' ')}>
       <h1 className={style.Title}>{data.name}</h1>
