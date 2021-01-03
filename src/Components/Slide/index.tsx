@@ -3,13 +3,8 @@ import 'devicon';
 import style from './Slide.module.css';
 
 import Slide from '../../types/Slide';
-type ImageProps = {
-  position: string;
-  image: string;
-  html_url: string;
-};
 
-const Image = ({ position, data }: Slide) => {
+const Slide = ({ position, data }: Slide) => {
   return (
     <article className={[style.Article, style[position]].join(' ')}>
       <h1 className={style.Title}>{data.name}</h1>
@@ -27,4 +22,4 @@ const Image = ({ position, data }: Slide) => {
   );
 };
 
-export default Image;
+export default Slide;

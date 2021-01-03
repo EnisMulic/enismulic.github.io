@@ -6,17 +6,18 @@ import HexagonGrid from '../../components/HexagonGrid';
 import Carousel from '../../components/Carousel';
 
 import data from '../../placeholderData';
+import Project from '../../types/Project';
 
 const Home = () => {
-  const [backgrounds, setBackgrounds] = useState<any>(data);
-  console.log(backgrounds);
+  const [projects, setProjects] = useState<Array<Project>>(data);
+
   return (
     <div className={style.Home}>
       <div className={style.Skills}>
         <HexagonGrid />
       </div>
       <div>
-        <Carousel slides={backgrounds} />
+        <Carousel slides={projects} />
       </div>
     </div>
   );
