@@ -10,13 +10,20 @@ const Slide = ({ position, data }: SlideType) => {
       <h1 className={style.Title}>{data.name}</h1>
       <img src={data.image} style={{ width: '100%', height: '100%' }} />
       <div className={style.Information}>
-        <a href={data.html_url} className={style.Link} target="_blank">
-          <i
-            className="devicon-github-original colored"
-            style={{ color: 'white' }}
-          ></i>
-          Source
-        </a>
+        {data.html_url && (
+          <a href={data.html_url} className={style.Link} target="_blank">
+            <i
+              className="devicon-github-original colored"
+              style={{ color: 'white' }}
+            ></i>
+            Source
+          </a>
+        )}
+        {data.website && (
+          <a href={data.website} className={style.Link} target="_blank">
+            Website
+          </a>
+        )}
       </div>
     </article>
   );
