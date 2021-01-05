@@ -1,5 +1,8 @@
 import React from 'react';
 import 'devicon';
+import { AiOutlineGlobal } from 'react-icons/ai';
+import { GrGithub } from 'react-icons/gr';
+
 import style from './Slide.module.css';
 
 import SlideType from '../../types/Slide';
@@ -12,15 +15,13 @@ const Slide = ({ position, data }: SlideType) => {
       <div className={style.Information}>
         {data.html_url && (
           <a href={data.html_url} className={style.Link} target="_blank">
-            <i
-              className="devicon-github-original colored"
-              style={{ color: 'white' }}
-            ></i>
+            <GrGithub />
             Source
           </a>
         )}
         {data.website && (
           <a href={data.website} className={style.Link} target="_blank">
+            <AiOutlineGlobal />
             Website
           </a>
         )}
