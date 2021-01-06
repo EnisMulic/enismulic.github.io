@@ -1,0 +1,18 @@
+.Layout {
+  display: flex;
+  height: 87vh;
+}
+
+.Layout > div {
+  width: 50%;
+}
+
+.Skills {
+  border-right: 1px solid white;
+}
+
+.Skills div {
+  position: relative;
+  left: 15%;
+  top: 10%;
+}

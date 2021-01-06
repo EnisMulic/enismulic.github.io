@@ -13,12 +13,7 @@ const Home = () => {
 
   return (
     <div className={style.Home}>
-      <div className={style.Skills}>
-        <HexagonGrid />
-      </div>
-      <div>
-        <Carousel slides={projects} />
-      </div>
+      <Carousel slides={projects} />
     </div>
   );
 };
