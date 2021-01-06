@@ -1,0 +1,14 @@
+.Project {
+  box-sizing: border-box;
+  width: 80%;
+  border: 1px solid white;
+  margin: 10px auto;
+  padding: 1rem;
+  text-align: left;
+}
+
+.Project:hover {
+  background-color: #2a68c4;
+  width: 85%;
+  cursor: pointer;
+}

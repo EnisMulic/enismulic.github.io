@@ -1,11 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import style from "./Portfolio.module.css";
+import style from './Portfolio.module.css';
+
+import Projects from '../../components/Projects';
 
 const Portfolio = () => {
   return (
     <div>
-      <h1>Portfolio Placeholder</h1>
+      <Projects />
     </div>
   );
 };
