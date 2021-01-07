@@ -1,6 +1,6 @@
 import React from 'react';
 
-import style from './Portfolio.module.css';
+// import style from './Portfolio.module.css';
 
 import Projects from '../../components/Projects';
 
