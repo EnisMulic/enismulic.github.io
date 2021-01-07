@@ -49,3 +49,4 @@ jobs:
         env:
           github_token: ${{ secrets.DEPLOY_ACCESS_TOKEN }}
           repository: ${{ github.repository }}
+          CI: false
