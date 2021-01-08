@@ -1,0 +1,21 @@
+.Contact {
+  display: flex;
+  align-items: center;
+  height: 90%;
+  box-sizing: border-box;
+  margin: 0 30%;
+}
+
+.Contact > div {
+  padding: 20px;
+}
+
+.Contact a {
+  text-decoration: none;
+  color: white;
+}
+
+.Icon {
+  font-size: 58px;
+  padding: 10px 0;
+}
