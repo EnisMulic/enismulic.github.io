@@ -8,25 +8,21 @@ import Contact from './pages/Contact';
 import styles from './App.module.css';
 import Navbar from './components/Navbar';
 
-import Layout from './containers/Layout';
-
 const App = () => {
   return (
     <div className={styles.App}>
       <Navbar />
-      <Layout>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/portfolio">
-            <Portfolio />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-        </Switch>
-      </Layout>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/portfolio">
+          <Portfolio />
+        </Route>
+        <Route path="/contact">
+          <Contact />
+        </Route>
+      </Switch>
     </div>
   );
 };
