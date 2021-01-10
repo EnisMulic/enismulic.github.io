@@ -5,7 +5,6 @@
 
 .nav div {
   font-size: 1.2rem;
-  padding: 2px;
   margin: 1rem;
 }
 
@@ -13,6 +12,18 @@
   color: white;
   font-size: 1.2rem;
   text-decoration: none;
-  padding: 2px;
   margin: 1rem;
+}
+
+.Spacer {
+  flex: 1;
+}
+
+.Contact {
+  display: flex;
+}
+
+.Contact a {
+  text-decoration: none;
+  color: white;
 }

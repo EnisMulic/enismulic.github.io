@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
-import Contact from './pages/Contact';
 
 import styles from './App.module.css';
 import Navbar from './components/Navbar';
@@ -18,9 +17,6 @@ const App = () => {
         </Route>
         <Route path="/portfolio">
           <Portfolio />
-        </Route>
-        <Route path="/contact">
-          <Contact />
         </Route>
       </Switch>
     </div>
