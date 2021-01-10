@@ -1,14 +1,27 @@
 .Project {
   box-sizing: border-box;
   width: 80%;
-  border: 1px solid white;
   margin: 10px auto;
   padding: 1rem;
   text-align: left;
 }
 
-.Project:hover {
-  background-color: #2a68c4;
-  width: 85%;
-  cursor: pointer;
+.Project img {
+  width: 600px;
+  height: 400px;
+}
+
+.Project a {
+  text-decoration: none;
+  color: white;
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+}
+
+.Header i {
+  font-size: 24px;
+  padding: 1rem;
 }

@@ -1,16 +1,16 @@
 import React from 'react';
 
 // import style from './Portfolio.module.css';
-
-import Carousel from '../../components/Carousel';
+import Projects from '../../components/Projects';
 
 import data from '../../placeholderData';
 
 const Portfolio = () => {
+  console.log(data);
   return (
     <div>
       <div>
-        <Carousel slides={data} />
+        <Projects projects={data} />
       </div>
     </div>
   );
