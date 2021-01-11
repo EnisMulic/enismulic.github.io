@@ -1,0 +1,12 @@
+.Tag {
+  border: 1px solid white;
+  display: inline-block;
+  font-size: 80%;
+  padding: 0.3125rem 0.9375rem;
+  background-color: #0a192f;
+  color: #fff;
+  border-radius: 0.625rem;
+  margin-right: 0.3125rem;
+  margin-bottom: 0.3125rem;
+  opacity: 0.7;
+}
