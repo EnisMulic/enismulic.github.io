@@ -16,9 +16,10 @@
   align-items: center;
 }
 
-.Header i {
+.Header i,
+.Header svg {
   font-size: 24px;
-  padding: 1rem;
+  padding: 1rem 0 1rem 1rem;
 }
 
 .Content {

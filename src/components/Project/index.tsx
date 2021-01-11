@@ -40,12 +40,7 @@ const Project = (props: ProjectType) => {
         }}
       >
         <div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
-            similique neque omnis quidem, esse cumque deleniti qui voluptate
-            eius, modi sequi error in facere vel perferendis libero nam eum
-            laboriosam.
-          </p>
+          <p>{props.description}</p>
           <div>
             {props.tags.map((tag, index) => (
               <Tag value={tag} key={index} />
