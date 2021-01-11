@@ -94,6 +94,11 @@ const HexagonGrid = () => {
           className={[style.Icon, 'devicon-mongodb-plain-wordmark'].join(' ')}
         ></i>
       </Hexagon>
+      <Hexagon>
+        <i
+          className={[style.Icon, 'devicon-jquery-plain-wordmark'].join(' ')}
+        ></i>
+      </Hexagon>
     </div>
   );
 };

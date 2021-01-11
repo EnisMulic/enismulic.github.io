@@ -5,7 +5,7 @@ interface Project {
   html_url: string;
   website: string;
   description: string;
-  technology: Array<string>;
+  tags: Array<string>;
 }
 
 export default Project;
