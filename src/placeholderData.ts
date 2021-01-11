@@ -8,8 +8,17 @@ const projects: Array<Project> = [
     name: 'Eventi',
     html_url: 'https://github.com/EnisMulic/Eventi',
     website: '',
-    description: '',
-    technology: ['C#', 'MSSQLServer', 'Docker'],
+    description:
+      'An application for finding events neer you. Built in C# with a REST API and MVC pattern',
+    tags: [
+      'C#',
+      '.NET Core',
+      'MS SQL Server',
+      'Docker',
+      'REST API',
+      'Refit',
+      'MVC',
+    ],
   },
   {
     id: 2,
@@ -18,8 +27,16 @@ const projects: Array<Project> = [
     name: 'MSG - Z',
     html_url: 'https://github.com/EnisMulic/MSG-Z',
     website: '',
-    description: '',
-    technology: ['Python', 'PostgreSQL', 'SQLAlchemy'],
+    description:
+      'A discord utility bot written in python for automating administrative tasks',
+    tags: [
+      'Python',
+      'PostgreSQL',
+      'SQLAlchemy',
+      'discord.py',
+      'Alembic',
+      'Beautiful Soup',
+    ],
   },
   {
     id: 3,
@@ -28,8 +45,9 @@ const projects: Array<Project> = [
     name: 'MSG - Z - API',
     html_url: 'https://github.com/EnisMulic/MSG-Z-API',
     website: '',
-    description: '',
-    technology: ['Python', 'MongoDB', 'Flask'],
+    description:
+      'A Python RESTful api for handling MSG - Z configuration files',
+    tags: ['Python', 'MongoDB', 'Flask', 'REST-X', 'Marshmallow', 'Docker'],
   },
   {
     id: 4,
@@ -38,8 +56,29 @@ const projects: Array<Project> = [
     name: 'Lyra',
     html_url: 'https://github.com/EnisMulic/Lyra',
     website: '',
+    description:
+      'An application for streaming music built in C# with a REST API, WinForms for the admin panel and Xamarin for the client side',
+    tags: ['C#', 'MSSQLServer', 'Docker', 'WinForms', 'Xamarin', 'REST API'],
+  },
+  {
+    id: 5,
+    image:
+      'https://images.pexels.com/photos/3513239/pexels-photo-3513239.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    name: 'Quiz API',
+    html_url: 'https://github.com/EnisMulic/Quiz-API',
+    website: '',
+    description: 'A simple RESTful API in Go(lang)',
+    tags: ['Go', 'MongoDB', 'gorilla/mux', 'REST API'],
+  },
+  {
+    id: 6,
+    image:
+      'https://images.pexels.com/photos/3333991/pexels-photo-3333991.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    name: 'Portfolio website',
+    html_url: 'https://github.com/EnisMulic/enismulic.github.io',
+    website: 'https://enismulic.github.io',
     description: '',
-    technology: ['C#', 'MSSQLServer', 'Docker', 'WinForms', 'Xamarin'],
+    tags: ['ReactJS', 'TypeScript'],
   },
 ];
 
