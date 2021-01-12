@@ -1,3 +1,20 @@
+.Home {
+  display: flex;
+}
+
 .Skills > div {
   margin: 60px 90px;
+}
+
+.Info {
+  padding: 200px;
+  display: block;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 3.6em;
+  line-height: 1.8em;
+  margin: auto;
+  font-size: 32px;
+  font-weight: bold;
 }

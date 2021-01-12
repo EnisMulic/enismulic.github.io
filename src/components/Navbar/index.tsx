@@ -6,11 +6,13 @@ import style from './Navbar.module.css';
 
 const Navbar = () => {
   return (
-    <nav className={style.nav}>
-      <NavLink exact to="/">
+    <nav className={style.Navbar}>
+      <NavLink exact to="/" className={style.Link}>
         Home
       </NavLink>
-      <NavLink to="/portfolio">Portfolio</NavLink>
+      <NavLink to="/portfolio" className={style.Link}>
+        Portfolio
+      </NavLink>
       <div className={style.Spacer}></div>
       <div className={style.Contact}>
         <div>
@@ -19,9 +21,7 @@ const Navbar = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <i className={[style.Icon, 'devicon-linkedin-plain'].join(' ')}>
-              {' '}
-            </i>
+            <i className={[style.Icon, 'devicon-linkedin-plain'].join(' ')}></i>
           </a>
         </div>
         <div>
