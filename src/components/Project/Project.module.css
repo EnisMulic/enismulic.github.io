@@ -1,8 +1,6 @@
 .Project {
   box-sizing: border-box;
-  width: 80%;
-  margin: 10px auto;
-  padding: 1rem;
+  margin: 10px 50px 10px 120px;
   text-align: left;
 }
 
@@ -24,8 +22,8 @@
 
 .Content {
   box-sizing: border-box;
-  width: 600px;
-  height: 400px;
+  width: 750px;
+  height: 450px;
   padding: 30px;
 }
 
@@ -37,4 +35,49 @@
 .Content:hover > * {
   opacity: 1;
   transition: opacity 0.7s ease;
+}
+
+@media screen and (max-width: 2560px) {
+  .Project {
+    margin: 10px 50px 10px 100px;
+  }
+
+  .Content {
+    width: 900px;
+    height: 550px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .Project {
+    margin: 10px 50px 10px 55px;
+  }
+
+  .Content {
+    width: 600px;
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Project {
+    margin: 10px auto;
+  }
+
+  .Content {
+    width: 600px;
+    height: 300px;
+    padding: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Project {
+    margin: 10px auto;
+  }
+
+  .Content {
+    width: 400px;
+    height: 300px;
+  }
 }
