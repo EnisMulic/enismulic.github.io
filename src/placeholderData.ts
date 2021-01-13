@@ -63,7 +63,7 @@ const projects: Array<Project> = [
   {
     id: 5,
     image:
-      'https://images.pexels.com/photos/3513239/pexels-photo-3513239.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+      'https://images.pexels.com/photos/3309869/pexels-photo-3309869.jpeg?cs=srgb&dl=pexels-andre-estevez-3309869.jpg&fm=jpg',
     name: 'Quiz API',
     html_url: 'https://github.com/EnisMulic/Quiz-API',
     website: '',
@@ -73,12 +73,12 @@ const projects: Array<Project> = [
   {
     id: 6,
     image:
-      'https://images.pexels.com/photos/3333991/pexels-photo-3333991.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+      'https://images.pexels.com/photos/5650642/pexels-photo-5650642.jpeg?cs=srgb&dl=pexels-tim-gouw-5650642.jpg&fm=jpg',
     name: 'Portfolio website',
     html_url: 'https://github.com/EnisMulic/enismulic.github.io',
     website: 'https://enismulic.github.io',
     description: '',
-    tags: ['ReactJS', 'TypeScript'],
+    tags: ['ReactJS', 'TypeScript', 'Github Actions'],
   },
 ];
 
