@@ -26,10 +26,6 @@
     flex-direction: column;
   }
 
-  .Skills {
-    margin: 20px 20px 60px 20px;
-  }
-
   .Info {
     visibility: hidden;
   }
