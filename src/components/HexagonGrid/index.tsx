@@ -27,33 +27,41 @@ import Hexagon from '../Hexagon';
 
 const HexagonGrid = () => {
   const icons = [
+    // Frontend core
+    <Html5PlainIcon className={style.Icon}></Html5PlainIcon>,
+    <Css3PlainIcon className={style.Icon}></Css3PlainIcon>,
+    <JavascriptPlainIcon className={style.Icon}></JavascriptPlainIcon>,
+    <TypescriptPlainIcon className={style.Icon}></TypescriptPlainIcon>,
+    
+    // Frontend frameworks
+    <ReactOriginalIcon className={style.Icon}></ReactOriginalIcon>,
+    <JqueryPlainWordmarkIcon className={style.Icon}></JqueryPlainWordmarkIcon>,
+    <BootstrapPlainIcon className={style.Icon}></BootstrapPlainIcon>,
+    <GraphqlPlainIcon className={style.Icon}></GraphqlPlainIcon>,
+    
+    // Backend languages
     <CLineIcon className={style.Icon}></CLineIcon>,
     <CplusplusLineIcon className={style.Icon}></CplusplusLineIcon>,
     <CsharpLineIcon className={style.Icon}></CsharpLineIcon>,
-    <Html5PlainIcon className={style.Icon}></Html5PlainIcon>,
-    <Css3PlainIcon className={style.Icon}></Css3PlainIcon>,
+    <PythonPlainIcon className={style.Icon}></PythonPlainIcon>,
+    <GoPlainIcon className={style.Icon}></GoPlainIcon>,
+    
+    // Backend frameworks
     <DotNetPlainIcon className={style.Icon}></DotNetPlainIcon>,
     <DotnetcorePlainIcon className={style.Icon}></DotnetcorePlainIcon>,
-    <JavascriptPlainIcon className={style.Icon}></JavascriptPlainIcon>,
-    <TypescriptPlainIcon className={style.Icon}></TypescriptPlainIcon>,
-    <PythonPlainIcon className={style.Icon}></PythonPlainIcon>,
+    
+    // Databases
     <PostgresqlPlainIcon className={style.Icon}></PostgresqlPlainIcon>,
+    <MongodbPlainWordmarkIcon className={style.Icon}></MongodbPlainWordmarkIcon>,
+    <MicrosoftsqlserverPlainWordmarkIcon className={style.Icon}></MicrosoftsqlserverPlainWordmarkIcon>,
+    <SqlalchemyPlainIcon className={style.Icon}></SqlalchemyPlainIcon>,
+    
+    // DevOps & Tools
     <GitPlainIcon className={style.Icon}></GitPlainIcon>,
     <DockerPlainIcon className={style.Icon}></DockerPlainIcon>,
-    <BootstrapPlainIcon className={style.Icon}></BootstrapPlainIcon>,
     <BashPlainIcon className={style.Icon}></BashPlainIcon>,
-    <ReactOriginalIcon className={style.Icon}></ReactOriginalIcon>,
-    <MongodbPlainWordmarkIcon
-      className={style.Icon}
-    ></MongodbPlainWordmarkIcon>,
-    <GoPlainIcon className={style.Icon}></GoPlainIcon>,
-    <JqueryPlainWordmarkIcon className={style.Icon}></JqueryPlainWordmarkIcon>,
-    <SqlalchemyPlainIcon className={style.Icon}></SqlalchemyPlainIcon>,
-    <MicrosoftsqlserverPlainWordmarkIcon
-      className={style.Icon}
-    ></MicrosoftsqlserverPlainWordmarkIcon>,
-    <GraphqlPlainIcon className={style.Icon}></GraphqlPlainIcon>,
   ];
+  
   return (
     <div className={style.HexagonGrid}>
       {icons.map((icon, index) => {
