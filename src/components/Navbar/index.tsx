@@ -7,10 +7,10 @@ import style from './Navbar.module.css';
 const Navbar = () => {
   return (
     <nav className={style.Navbar}>
-      <NavLink exact to="/" className={style.Link}>
+      <NavLink to="/" className={({ isActive }) => isActive ? style.ActiveLink : style.Link}>
         Home
       </NavLink>
-      <NavLink to="/portfolio" className={style.Link}>
+      <NavLink to="/portfolio" className={({ isActive }) => isActive ? style.ActiveLink : style.Link}>
         Portfolio
       </NavLink>
       <div className={style.Spacer}></div>
