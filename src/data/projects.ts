@@ -30,7 +30,6 @@ export const projects: Project[] = [
   },
   {
     slug: 'igre',
-    featured: true,
     name: 'Igre',
     tagline: 'igre-five.vercel.app',
     summary: 'Platform for Bosnian language word puzzle games. Currently features Konekcije — a connections-style category puzzle.',
@@ -45,6 +44,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'dictionary',
+    featured: true,
     name: 'Bosnian Dictionary Application',
     tagline: 'rjecnik-liard.vercel.app',
     summary: 'OCR pipeline that converts a scanned PDF dictionary into a searchable web app — ~45K words and ~46K definitions — with a Next.js frontend and an admin dashboard for managing entries.',
