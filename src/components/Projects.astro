@@ -1,52 +1,32 @@
 ---
-import { experience } from '../data/experience';
-import type { ExperienceItem } from '../data/experience';
-import { projects } from '../data/projects';
-import type { Project } from '../data/projects';
+import { items } from '../data/items';
+import type { Item } from '../data/items';
 
-const featuredExperience = experience.filter(e => e.featured);
-const featuredProjects = projects.filter(p => p.featured);
+const featured = items.filter(i => i.featured);
 ---
 
 <section id="projects">
   <div class="container">
     <div class="grid">
-      {featuredExperience.map((item: ExperienceItem) => (
+      {featured.map((item: Item) => (
         <article>
-          <a href={`/projects/${item.slug}`} class="card-link" aria-label={item.title} />
+          <a href={`/projects/${item.slug}`} class="card-link" aria-label={item.name} />
           <div class="card-top">
             <div class="name-row">
-              <h3>{item.title}</h3>
-              {item.caseStudyUrl && (
-                <a href={item.caseStudyUrl} target="_blank" rel="noopener" class="ext-link" aria-label={`Case study for ${item.title}`}>↗</a>
+              <h3>{item.name}</h3>
+              {item.extUrl && (
+                <a href={item.extUrl} target="_blank" rel="noopener" class="ext-link" aria-label={`Visit ${item.name}`}>↗</a>
               )}
             </div>
-            <div class="meta">
-              <span class="role">{item.role}</span>
-            </div>
+            {item.role && (
+              <div class="meta">
+                <span class="role">{item.role}</span>
+              </div>
+            )}
           </div>
           <p class="desc">{item.summary}</p>
           <div class="tags">
             {item.stack.map((s: string) => (
-              <span class="tag">{s}</span>
-            ))}
-          </div>
-        </article>
-      ))}
-      {featuredProjects.map((project: Project) => (
-        <article>
-          <a href={`/projects/${project.slug}`} class="card-link" aria-label={project.name} />
-          <div class="card-top">
-            <div class="name-row">
-              <h3>{project.name}</h3>
-              {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener" class="ext-link" aria-label={`Visit ${project.name}`}>↗</a>
-              )}
-            </div>
-          </div>
-          <p class="desc">{project.summary}</p>
-          <div class="tags">
-            {project.stack.map((s: string) => (
               <span class="tag">{s}</span>
             ))}
           </div>

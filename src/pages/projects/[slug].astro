@@ -1,82 +1,53 @@
 ---
-import { experience } from '../../data/experience';
-import { projects } from '../../data/projects';
+import { items } from '../../data/items';
 import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
 
 export function getStaticPaths() {
-  const expPaths = experience.map(item => ({
+  return items.map(item => ({
     params: { slug: item.slug },
-    props: {
-      type: 'experience' as const,
-      title: item.title,
-      subtitle: item.role,
-      period: item.period,
-      summary: item.summary,
-      bullets: item.bullets,
-      stack: item.stack,
-      externalUrl: item.caseStudyUrl,
-      externalLabel: item.caseStudyLabel,
-    },
+    props: { item },
   }));
-
-  const projectPaths = projects.map(project => ({
-    params: { slug: project.slug },
-    props: {
-      type: 'project' as const,
-      title: project.name,
-      subtitle: project.tagline,
-      period: undefined,
-      summary: project.summary,
-      bullets: project.description,
-      stack: project.stack,
-      externalUrl: project.liveUrl,
-      externalLabel: project.liveLabel,
-      githubUrl: project.githubUrl,
-    },
-  }));
-
-  return [...expPaths, ...projectPaths];
 }
 
-const { type, title, subtitle, period, summary, bullets, stack, externalUrl, externalLabel, githubUrl } = Astro.props;
+const { item } = Astro.props;
 ---
 
-<Layout title={`${title} — Enis Mulić`} description={summary}>
+<Layout title={`${item.name} — Enis Mulić`} description={item.summary}>
   <Nav />
   <main>
     <div class="container">
-      <a href="/#work" class="back">← Back</a>
+      <a href="/projects" class="back">← Projects</a>
 
       <header>
-        <p class="type-label">{type === 'experience' ? 'RUBICON d.o.o.' : 'Personal Project'}</p>
-        <h1>{title}</h1>
+        <p class="type-label">{item.type === 'work' ? 'RUBICON d.o.o.' : 'Personal Project'}</p>
+        <h1>{item.name}</h1>
         <div class="meta">
-          {subtitle && <span class="subtitle">{subtitle}</span>}
-          {period && <span class="period">{period}</span>}
+          {item.role && <span class="subtitle">{item.role}</span>}
+          {item.period && <span class="period">{item.period}</span>}
         </div>
         <div class="ext-links">
-          {externalUrl && (
-            <a href={externalUrl} target="_blank" rel="noopener" class="external">
-              {externalLabel ?? externalUrl} ↗
+          {item.extUrl && (
+            <a href={item.extUrl} target="_blank" rel="noopener" class="external">
+              {item.extLabel ?? item.extUrl} ↗
             </a>
           )}
-          {githubUrl && (
-            <a href={githubUrl} target="_blank" rel="noopener" class="external">
+          {item.githubUrl && (
+            <a href={item.githubUrl} target="_blank" rel="noopener" class="external">
               GitHub ↗
             </a>
           )}
         </div>
       </header>
 
-      <p class="summary">{summary}</p>
+      <p class="summary">{item.summary}</p>
 
       <ul class="bullets">
-        {bullets.map((b: string) => <li>{b}</li>)}
+        {item.description.map((b: string) => <li>{b}</li>)}
       </ul>
 
       <div class="stack">
-        {stack.map((s: string) => <span class="tag">{s}</span>)}
+        {item.stack.map((s: string) => <span class="tag">{s}</span>)}
       </div>
     </div>
   </main>

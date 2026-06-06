@@ -1,25 +1,7 @@
 ---
-import { experience } from '../../data/experience';
-import { projects } from '../../data/projects';
+import { items } from '../../data/items';
 import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
-
-const all = [
-  ...experience.map(item => ({
-    slug: item.slug,
-    name: item.title,
-    summary: item.summary,
-    stack: item.stack,
-    extUrl: item.caseStudyUrl,
-  })),
-  ...projects.map(project => ({
-    slug: project.slug,
-    name: project.name,
-    summary: project.summary,
-    stack: project.stack,
-    extUrl: project.liveUrl,
-  })),
-];
 ---
 
 <Layout title="Projects — Enis Mulić" description="All projects — work at RUBICON and personal builds.">
@@ -28,7 +10,7 @@ const all = [
     <div class="container">
       <a href="/" class="back">← Back</a>
       <div class="grid">
-        {all.map(item => (
+        {items.map(item => (
           <article>
             <a href={`/projects/${item.slug}`} class="card-link" aria-label={item.name} />
             <div class="name-row">
