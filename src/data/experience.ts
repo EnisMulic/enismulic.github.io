@@ -1,4 +1,6 @@
 export interface ExperienceItem {
+  slug: string;
+  featured?: boolean;
   title: string;
   role: string;
   period: string;
@@ -11,6 +13,8 @@ export interface ExperienceItem {
 
 export const experience: ExperienceItem[] = [
   {
+    slug: 'data-analytics-platform',
+    featured: true,
     title: 'Data & Analytics Platform',
     role: 'Lead Backend/DevOps Engineering',
     period: 'Jan 2023 – Present',
@@ -31,6 +35,7 @@ export const experience: ExperienceItem[] = [
     caseStudyUrl: 'https://www.rubicon-world.com/cases/all-in-one-enterprise-data-and-analytics-portal',
   },
   {
+    slug: 'supply-chain-digital-twin',
     title: 'Supply Chain Digital Twin Platform',
     role: 'Software / DevOps / Data Engineer',
     period: 'Jan 2022 – Dec 2022',
@@ -45,6 +50,7 @@ export const experience: ExperienceItem[] = [
     caseStudyUrl: 'https://www.rubicon-world.com/cases/supply-chain-insights-through-digital-twin-analytics',
   },
   {
+    slug: 'supply-chain-analytics',
     title: 'Real-Time Supply Chain Operation Analytics',
     role: 'Software / DevOps / Data Engineer',
     period: 'Jan 2022 – Dec 2022',
@@ -60,6 +66,7 @@ export const experience: ExperienceItem[] = [
     caseStudyUrl: 'https://www.rubicon-world.com/cases/optimizing-supply-chain-processes-with-real-time-analytics-platform',
   },
   {
+    slug: 'insurance-admin-system',
     title: 'Insurance Administration System',
     role: 'Fullstack / Data Engineer',
     period: 'May 2021 – Dec 2021',

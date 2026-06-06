@@ -1,0 +1,189 @@
+---
+import { experience } from '../../data/experience';
+import { projects } from '../../data/projects';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+
+export function getStaticPaths() {
+  const expPaths = experience.map(item => ({
+    params: { slug: item.slug },
+    props: {
+      type: 'experience' as const,
+      title: item.title,
+      subtitle: item.role,
+      period: item.period,
+      summary: item.summary,
+      bullets: item.bullets,
+      stack: item.stack,
+      externalUrl: item.caseStudyUrl,
+      externalLabel: item.caseStudyLabel,
+    },
+  }));
+
+  const projectPaths = projects.map(project => ({
+    params: { slug: project.slug },
+    props: {
+      type: 'project' as const,
+      title: project.name,
+      subtitle: project.tagline,
+      period: undefined,
+      summary: project.summary,
+      bullets: project.description,
+      stack: project.stack,
+      externalUrl: project.liveUrl,
+      externalLabel: project.liveLabel,
+      githubUrl: project.githubUrl,
+    },
+  }));
+
+  return [...expPaths, ...projectPaths];
+}
+
+const { type, title, subtitle, period, summary, bullets, stack, externalUrl, externalLabel, githubUrl } = Astro.props;
+---
+
+<Layout title={`${title} — Enis Mulić`} description={summary}>
+  <Nav />
+  <main>
+    <div class="container">
+      <a href="/#work" class="back">← Back</a>
+
+      <header>
+        <p class="type-label">{type === 'experience' ? 'RUBICON d.o.o.' : 'Personal Project'}</p>
+        <h1>{title}</h1>
+        <div class="meta">
+          {subtitle && <span class="subtitle">{subtitle}</span>}
+          {period && <span class="period">{period}</span>}
+        </div>
+        <div class="ext-links">
+          {externalUrl && (
+            <a href={externalUrl} target="_blank" rel="noopener" class="external">
+              {externalLabel ?? externalUrl} ↗
+            </a>
+          )}
+          {githubUrl && (
+            <a href={githubUrl} target="_blank" rel="noopener" class="external">
+              GitHub ↗
+            </a>
+          )}
+        </div>
+      </header>
+
+      <p class="summary">{summary}</p>
+
+      <ul class="bullets">
+        {bullets.map((b: string) => <li>{b}</li>)}
+      </ul>
+
+      <div class="stack">
+        {stack.map((s: string) => <span class="tag">{s}</span>)}
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    padding-top: calc(4rem + 72px);
+    padding-bottom: 6rem;
+  }
+
+  .back {
+    display: inline-block;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    transition: color 0.15s;
+  }
+
+  .back:hover { color: var(--fg); }
+
+  header { margin-bottom: 2.5rem; }
+
+  .type-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.25rem);
+    margin-bottom: 0.6rem;
+    color: var(--fg);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: baseline;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 0.875rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .period {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  .ext-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+
+  .external {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+    transition: opacity 0.15s;
+  }
+
+  .external:hover { opacity: 0.75; color: var(--accent); }
+
+  .summary {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 60ch;
+    margin-bottom: 2.5rem;
+    border-left: 2px solid var(--subtle);
+    padding-left: 1.25rem;
+  }
+
+  .bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .bullets li {
+    font-size: 0.925rem;
+    color: var(--muted);
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  .bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--subtle);
+  }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+</style>

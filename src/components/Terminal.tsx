@@ -2,15 +2,9 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 
 const COMMANDS: Record<string, string | null> = {
   help: `Available commands:
-  work     — scroll to work & projects
-  skills   — scroll to technical skills
-  blog     — open blog
-  contact  — scroll to contact
-  clear    — clear the terminal`,
+  work   — scroll to work & projects
+  clear  — clear the terminal`,
   work: null,
-  skills: null,
-  blog: null,
-  contact: null,
   clear: null,
 };
 
@@ -65,15 +59,8 @@ export default function Terminal() {
       return;
     }
 
-    if (trimmed === 'blog') {
-      setLines(prev => [...prev, { type: 'output', text: 'Opening blog...' }]);
-      setTimeout(() => { window.location.href = '/blog'; }, 400);
-      return;
-    }
-
     const navTargets: Record<string, string> = {
       work: '#work',
-      skills: '#skills',
       contact: '#contact',
     };
 

@@ -1,4 +1,6 @@
 export interface Project {
+  slug: string;
+  featured?: boolean;
   name: string;
   tagline: string;
   summary: string;
@@ -6,10 +8,13 @@ export interface Project {
   stack: string[];
   liveUrl?: string;
   liveLabel?: string;
+  githubUrl?: string;
 }
 
 export const projects: Project[] = [
   {
+    slug: 'slibe',
+    featured: true,
     name: 'Panini Sticker Swap Platform',
     tagline: 'slibe.online',
     summary: 'Platform for FIFA World Cup 2026 Panini collectors to track sticker albums and find swap partners. Scaled to 2K+ users and 170K+ stickers tracked within weeks of launch.',
@@ -24,7 +29,23 @@ export const projects: Project[] = [
     liveLabel: 'slibe.online',
   },
   {
-    name: 'Fullstack Dictionary Application',
+    slug: 'igre',
+    featured: true,
+    name: 'Igre',
+    tagline: 'igre-five.vercel.app',
+    summary: 'Platform for Bosnian language word puzzle games. Currently features Konekcije — a connections-style category puzzle.',
+    description: [
+      'Built a platform for Bosnian language word puzzle games, starting with Konekcije — a connections-style category puzzle.',
+      'Developed as an open-source project under OpenSourceSarajevo, targeting the Bosnian language community.',
+    ],
+    stack: ['React', 'TypeScript', 'Vite'],
+    liveUrl: 'https://igre-five.vercel.app/',
+    liveLabel: 'igre-five.vercel.app',
+    githubUrl: 'https://github.com/OpenSourceSarajevo/igre',
+  },
+  {
+    slug: 'dictionary',
+    name: 'Bosnian Dictionary Application',
     tagline: 'rjecnik-liard.vercel.app',
     summary: 'OCR pipeline that converts a scanned PDF dictionary into a searchable web app — ~45K words and ~46K definitions — with a Next.js frontend and an admin dashboard for managing entries.',
     description: [
