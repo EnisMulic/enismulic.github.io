@@ -1,42 +1,26 @@
 {
-  "homepage": "https://enismulic.github.io/",
   "name": "enismulic.github.io",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "astro dev",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "echo \"No tests\"",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/react-fontawesome": "^0.1.14",
-    "@types/react": "^18.3.28",
-    "@types/react-dom": "^18.3.7",
-    "@types/react-router": "^5.1.11",
-    "devicon": "^2.11.0",
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.9.4",
     "gh-pages": "^6.3.0",
     "react": "^18.3.1",
-    "react-devicons": "^2.14.0",
-    "react-dom": "^18.3.1",
-    "react-icons": "^4.1.0",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^6.30.3",
-    "typescript": "^5.9.3"
-  },
-  "scripts": {
-    "start": "vite",
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "test": "vitest run",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^24.0.1",
-    "@types/react-router-dom": "^5.1.7",
-    "@vitejs/plugin-react": "^4.5.2",
-    "vitest": "^4.1.8",
-    "vite": "^6.3.5"
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
+    "typescript": "^5.9.3"
   }
 }

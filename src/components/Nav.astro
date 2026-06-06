@@ -1,0 +1,68 @@
+---
+const navLinks = [
+  { href: '#work', label: 'Work' },
+  { href: '#skills', label: 'Skills' },
+  { href: '/blog', label: 'Blog' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+<nav>
+  <div class="container">
+    <a href="/" class="logo">EM</a>
+    <ul>
+      {navLinks.map(link => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.25rem 0;
+    background: rgba(15,15,15,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--subtle);
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    color: var(--fg);
+  }
+
+  ul {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  li a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+
+  li a:hover {
+    color: var(--fg);
+  }
+
+  @media (max-width: 600px) {
+    ul { gap: 1.2rem; }
+    li a { font-size: 0.8rem; }
+  }
+</style>

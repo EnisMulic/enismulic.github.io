@@ -1,0 +1,72 @@
+<section id="hero">
+  <div class="container">
+    <h1>Enis Mulić</h1>
+    <p class="role">Software Engineer</p>
+    <p class="bio">
+      5+ years building cloud-native backends and data platforms on Azure — specialising in
+      distributed systems, Event-Driven Architecture, Event Sourcing, and CQRS, with
+      hands-on ownership across backend, DevOps, and infrastructure. Currently leading backend
+      and infrastructure work on an enterprise data and analytics platform at RUBICON.
+    </p>
+    <div class="links">
+      <a href="mailto:enis.mulic@rubicon.ba" class="link-primary">enis.mulic@rubicon.ba</a>
+      <a href="https://github.com/enismulic" target="_blank" rel="noopener" class="link-secondary">GitHub</a>
+      <a href="#work" class="link-secondary">Work</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    padding-top: calc(5rem + 72px);
+    padding-bottom: 5rem;
+  }
+
+  h1 {
+    margin-bottom: 0.5rem;
+    color: var(--fg);
+  }
+
+  .role {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+  }
+
+  .bio {
+    font-size: 1rem;
+    line-height: 1.75;
+    max-width: 58ch;
+    color: var(--muted);
+    margin-bottom: 2.25rem;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .link-primary {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+    transition: opacity 0.15s;
+  }
+
+  .link-primary:hover { opacity: 0.75; color: var(--accent); }
+
+  .link-secondary {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+
+  .link-secondary:hover { color: var(--fg); }
+</style>

@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<Layout title="Blog — Enis Mulić" description="Writing about engineering, systems, and things I find interesting.">
+  <Nav />
+  <main>
+    <div class="container" style="padding-top: calc(5rem + 72px);">
+      <p class="section-label">Blog</p>
+      <ul class="posts">
+        {posts.map(post => (
+          <li>
+            <a href={"/blog/" + post.slug}>
+              <span class="post-title">{post.data.title}</span>
+              <span class="post-date">{post.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+            </a>
+            {post.data.description && <p class="post-desc">{post.data.description}</p>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main { padding-bottom: 5rem; }
+  .posts { display: flex; flex-direction: column; gap: 0; }
+  .posts li { padding-block: 1.5rem; border-top: 1px solid var(--subtle); }
+  .posts li:last-child { border-bottom: 1px solid var(--subtle); }
+  .posts a { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.4rem; }
+  .post-title { font-size: 1rem; font-family: var(--font-serif); font-weight: 600; color: var(--fg); }
+  .post-date { font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+  .post-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+</style>

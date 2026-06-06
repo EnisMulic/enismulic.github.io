@@ -1,0 +1,39 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map(post => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+<Layout title={post.data.title + " — Enis Mulić"} description={post.data.description}>
+  <Nav />
+  <main>
+    <div class="container" style="padding-top: calc(5rem + 72px);">
+      <a href="/blog" class="back">← Blog</a>
+      <h1>{post.data.title}</h1>
+      <p class="date">{post.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      <article class="prose">
+        <Content />
+      </article>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main { padding-bottom: 5rem; }
+  .back { font-size: 0.82rem; color: var(--muted); display: block; margin-bottom: 2rem; }
+  .back:hover { color: var(--fg); }
+  h1 { margin-bottom: 0.5rem; }
+  .date { font-size: 0.82rem; color: var(--muted); margin-bottom: 3rem; }
+  .prose { font-size: 0.95rem; color: var(--muted); line-height: 1.8; max-width: 62ch; }
+  .prose :global(h2) { font-size: 1.25rem; color: var(--fg); margin-block: 2rem 0.75rem; }
+  .prose :global(p) { margin-bottom: 1.25rem; }
+  .prose :global(code) { font-size: 0.85em; background: var(--subtle); padding: 0.1em 0.35em; border-radius: 3px; color: var(--fg); }
+  .prose :global(pre) { background: #111; color: #e5e5e5; padding: 1.25rem; border-radius: 6px; overflow-x: auto; margin-block: 1.5rem; }
+</style>

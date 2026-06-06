@@ -1,0 +1,93 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = 'Enis Mulić', description = 'Software engineer building cloud-native backends and data platforms.' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f0f0f;
+    --fg: #ededed;
+    --muted: #888888;
+    --subtle: #222222;
+    --accent: #60a5fa;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Lora', Georgia, serif;
+    --max-w: 720px;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--accent); }
+
+  h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; line-height: 1.25; }
+  h1 { font-size: clamp(2.5rem, 6vw, 3.5rem); }
+  h2 { font-size: 1.75rem; letter-spacing: -0.01em; }
+  h3 { font-size: 1.1rem; }
+
+  p { color: var(--muted); }
+
+  ul { list-style: none; }
+
+  .container {
+    width: min(var(--max-w), 100% - 3rem);
+    margin-inline: auto;
+  }
+
+  section { padding-block: 5rem; }
+
+  .section-label {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    background: var(--subtle);
+    color: var(--muted);
+  }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--subtle);
+    margin-block: 3rem;
+  }
+</style>
