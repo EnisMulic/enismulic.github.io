@@ -10,14 +10,22 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+
+const words = post.body.trim().split(/\s+/).length;
+const readingTime = Math.max(1, Math.round(words / 200));
 ---
 <Layout title={post.data.title + " — Enis Mulić"} description={post.data.description}>
+  <div id="progress-bar"></div>
   <Nav />
   <main>
     <div class="container" style="padding-top: calc(5rem + 72px);">
       <a href="/blog" class="back">← Blog</a>
       <h1>{post.data.title}</h1>
-      <p class="date">{post.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      <p class="meta">
+        <span>{post.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+        <span class="sep">·</span>
+        <span>{readingTime} min read</span>
+      </p>
       <article class="prose">
         <Content />
       </article>
@@ -26,14 +34,78 @@ const { Content } = await post.render();
 </Layout>
 
 <style>
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: var(--accent);
+    z-index: 1000;
+    transition: width 0.1s linear;
+  }
   main { padding-bottom: 5rem; }
   .back { font-size: 0.82rem; color: var(--muted); display: block; margin-bottom: 2rem; }
   .back:hover { color: var(--fg); }
   h1 { margin-bottom: 0.5rem; }
-  .date { font-size: 0.82rem; color: var(--muted); margin-bottom: 3rem; }
+  .meta { font-size: 0.82rem; color: var(--muted); margin-bottom: 3rem; }
+  .sep { margin-inline: 0.4rem; }
   .prose { font-size: 0.95rem; color: var(--muted); line-height: 1.8; max-width: 62ch; }
   .prose :global(h2) { font-size: 1.25rem; color: var(--fg); margin-block: 2rem 0.75rem; }
   .prose :global(p) { margin-bottom: 1.25rem; }
   .prose :global(code) { font-size: 0.85em; background: var(--subtle); padding: 0.1em 0.35em; border-radius: 3px; color: var(--fg); }
-  .prose :global(pre) { background: #111; color: #e5e5e5; padding: 1.25rem; border-radius: 6px; overflow-x: auto; margin-block: 1.5rem; }
+  .prose :global(pre) {
+    position: relative;
+    background: #111;
+    color: #e5e5e5;
+    padding: 1.25rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-block: 1.5rem;
+  }
+  .prose :global(pre .copy-btn) {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.7rem;
+    font-family: var(--font-sans);
+    background: #2a2a2a;
+    color: #999;
+    border: 1px solid #333;
+    border-radius: 3px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s, color 0.15s;
+  }
+  .prose :global(pre:hover .copy-btn) { opacity: 1; }
+  .prose :global(pre .copy-btn:hover) { color: #fff; }
+  .prose :global(pre .copy-btn.copied) { color: var(--accent); border-color: var(--accent); }
 </style>
+
+<script>
+  // Scroll progress bar
+  const bar = document.getElementById('progress-bar');
+  function updateProgress() {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar) bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // Copy-to-clipboard on code blocks
+  document.querySelectorAll('pre').forEach(pre => {
+    const btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.textContent = 'copy';
+    pre.appendChild(btn);
+    btn.addEventListener('click', async () => {
+      const code = pre.querySelector('code')?.innerText ?? pre.innerText;
+      await navigator.clipboard.writeText(code);
+      btn.textContent = 'copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('copied'); }, 2000);
+    });
+  });
+</script>
