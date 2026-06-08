@@ -14,7 +14,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
       <ul class="posts">
         {posts.map(post => (
           <li>
-            <a href={"/blog/" + post.slug}>
+            <a href={"/blog/" + post.id.replace(/\.md$/, '')}>
               <span class="post-title">{post.data.title}</span>
               <span class="post-date">{post.data.pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
             </a>
