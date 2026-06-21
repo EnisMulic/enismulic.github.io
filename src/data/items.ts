@@ -78,7 +78,7 @@ export const items: Item[] = [
     description: [
       'Architected a scalable backend applying Event-Driven Architecture, Event Sourcing, Vertical Slice Architecture, Domain-Driven Design, and CQRS.',
       'Engineered persistence layers across Azure SQL and Azure Cosmos DB for relational and document-based data needs.',
-      'Built a serverless integration synchronising ~200 portfolio items across Cosmos DB, SAP LeanIX, and Microsoft Dataverse.',
+      'Built a serverless integration synchronizing ~200 portfolio items across Cosmos DB, SAP LeanIX, and Microsoft Dataverse.',
       'Developed Durable Functions orchestrating self-service workspace provisioning across 3 environments, supporting 7+ configurable templates.',
       'Implemented CI/CD pipelines for 7 components across 3 repositories and 3 environments.',
       'Automated release management with workflows that create release candidate branches and auto-generate release notes, supporting monthly release cycles.',
@@ -116,12 +116,12 @@ export const items: Item[] = [
     description: [
       'Maintained and refactored ETL pipelines built on Azure Data Factory, processing 20+ million records.',
       'Refactored dynamic SQL stored procedure-based CRUD operations to use the SqlKata query builder.',
-      'Optimised the continuous delivery pipeline for ETL workflows across environments.',
+      'Optimized the continuous delivery pipeline for ETL workflows across environments.',
       'Maintained and scaled Web APIs handling high-concurrency operational data.',
     ],
     stack: ['.NET', 'Azure Functions', 'Azure Data Factory', 'Azure SQL', 'Terraform', 'Terragrunt'],
     extUrl: 'https://www.rubicon-world.com/cases/optimizing-supply-chain-processes-with-real-time-analytics-platform',
-    extLabel: 'Optimising Supply Chain Processes with Real-Time Analytics',
+    extLabel: 'Optimizing Supply Chain Processes with Real-Time Analytics',
   },
   {
     slug: 'insurance-admin-system',
@@ -145,9 +145,8 @@ export const items: Item[] = [
     tagline: 'Discord community bot',
     summary: 'Discord bot for a Bosnian university faculty server automating student lifecycle management — registration, academic year progression, and news scraping from university platforms.',
     description: [
-      'Built a Discord bot to automate student management for a university faculty community: member registration, role-based academic year progression, and enforcement of enrollment windows via date-gated commands.',
-      'Engineered an async scraper that reverse-engines a stateful ASP.NET university LMS login — parsing __VIEWSTATE and __EVENTVALIDATION hidden fields — to poll and push new content to Discord channels.',
-      'Designed a cog-based modular architecture with 12 auto-loaded command modules and a JSON-driven rankup config to keep academic progression rules out of code.',
+      'Built a Discord bot to automate student management for a university faculty community.',
+      'Engineered an async scraper that reverse-engines a stateful ASP.NET university LMS login to poll and push new content to Discord channels.',
       'Used PostgreSQL with SQLAlchemy and Alembic for data persistence and deduplication of scraped content via MD5-hashed URLs.',
     ],
     stack: ['Python', 'discord.py', 'PostgreSQL', 'SQLAlchemy', 'aiohttp', 'BeautifulSoup4', 'Heroku'],
