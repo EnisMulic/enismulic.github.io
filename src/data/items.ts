@@ -9,8 +9,8 @@ export interface Item {
   summary: string;
   description: string[];
   stack: string[];
-  extUrl?: string;
-  extLabel?: string;
+  websiteUrl?: string;
+  caseStudyUrl?: string;
   githubUrl?: string;
   blogSlug?: string;
 }
@@ -31,8 +31,7 @@ export const items: Item[] = [
       'Handled traffic spikes by leaning on TanStack Router\'s caching layer and optimising the most expensive PostgreSQL queries as load grew.',
     ],
     stack: ['TanStack Start', 'Supabase', 'PostgreSQL', 'Cloudflare R2', 'Vercel'],
-    extUrl: 'https://slibe.online',
-    extLabel: 'slibe.online',
+    websiteUrl: 'https://slibe.online',
   },
   {
     slug: 'igre',
@@ -46,8 +45,7 @@ export const items: Item[] = [
       'Built under OpenSourceSarajevo as a community project, open to contributions from the local developer community.',
     ],
     stack: ['React', 'TypeScript', 'Vite'],
-    extUrl: 'https://igre-five.vercel.app/',
-    extLabel: 'igre-five.vercel.app',
+    websiteUrl: 'https://igre-five.vercel.app/',
     githubUrl: 'https://github.com/OpenSourceSarajevo/igre',
   },
   {
@@ -65,8 +63,8 @@ export const items: Item[] = [
       'An admin dashboard handles manual corrections and loading pipeline output into the database, since OCR output always needs some human review.',
     ],
     stack: ['Next.js', 'Supabase', 'PostgreSQL', 'Python', 'GitHub Actions', 'Vercel', 'Netlify'],
-    extUrl: 'https://rjecnik-liard.vercel.app/',
-    extLabel: 'Demo',
+    websiteUrl: 'https://rjecnik-liard.vercel.app/',
+    githubUrl: 'https://github.com/OpenSourceSarajevo/rjecnik',
   },
   {
     slug: 'data-analytics-platform',
@@ -84,8 +82,7 @@ export const items: Item[] = [
       'Infrastructure is fully provisioned with Terraform — secure Azure networking, public access disabled. Also led a CMS database migration from SQLite to PostgreSQL with under 1 hour of planned downtime.',
     ],
     stack: ['.NET', 'Azure Functions', 'Azure SQL', 'Cosmos DB', 'Azure Storage Queue', 'Terraform', 'Angular', 'Strapi CMS', 'Docker', 'Static Web Apps'],
-    extUrl: 'https://www.rubicon-world.com/cases/all-in-one-enterprise-data-and-analytics-portal',
-    extLabel: 'All-in-One Enterprise Data and Analytics Portal',
+    caseStudyUrl: 'https://www.rubicon-world.com/cases/all-in-one-enterprise-data-and-analytics-portal',
   },
   {
     slug: 'supply-chain-digital-twin',
@@ -101,8 +98,7 @@ export const items: Item[] = [
       'Implemented CI/CD workflows covering 3 components across 2 environments.',
     ],
     stack: ['.NET', 'Azure Functions', 'Azure Data Factory', 'Azure SQL', 'Neo4j', 'Terraform', 'Terragrunt'],
-    extUrl: 'https://www.rubicon-world.com/cases/supply-chain-insights-through-digital-twin-analytics',
-    extLabel: 'Supply Chain Insights Through Digital Twin Analytics',
+    caseStudyUrl: 'https://www.rubicon-world.com/cases/supply-chain-insights-through-digital-twin-analytics',
   },
   {
     slug: 'supply-chain-analytics',
@@ -118,8 +114,7 @@ export const items: Item[] = [
       'Maintained Web APIs handling high-concurrency reads from the processed dataset — performance and reliability were critical given real-time operational use.',
     ],
     stack: ['.NET', 'Azure Functions', 'Azure Data Factory', 'Azure SQL', 'Terraform', 'Terragrunt'],
-    extUrl: 'https://www.rubicon-world.com/cases/optimizing-supply-chain-processes-with-real-time-analytics-platform',
-    extLabel: 'Optimizing Supply Chain Processes with Real-Time Analytics',
+    caseStudyUrl: 'https://www.rubicon-world.com/cases/optimizing-supply-chain-processes-with-real-time-analytics-platform',
   },
   {
     slug: 'insurance-admin-system',
