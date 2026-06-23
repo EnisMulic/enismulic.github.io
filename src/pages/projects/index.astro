@@ -17,7 +17,7 @@ import Nav from '../../components/Nav.astro';
             <div class="tags">
               {item.stack.map(s => <span class="tag">{s}</span>)}
             </div>
-            <div class="links">
+            {(item.websiteUrl || item.caseStudyUrl || item.blogSlug || item.githubUrl) && <div class="links">
               {item.websiteUrl && (
                 <a href={item.websiteUrl} target="_blank" rel="noopener" class="link">
                   <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
@@ -42,7 +42,7 @@ import Nav from '../../components/Nav.astro';
                   GitHub
                 </a>
               )}
-            </div>
+            </div>}
           </article>
         ))}
       </div>
@@ -99,7 +99,13 @@ import Nav from '../../components/Nav.astro';
 
   .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 
-  .links { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--subtle);
+  }
 
   .link {
     display: flex;
