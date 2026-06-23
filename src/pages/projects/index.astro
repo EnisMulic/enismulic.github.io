@@ -12,7 +12,6 @@ import Nav from '../../components/Nav.astro';
       <div class="grid">
         {items.map(item => (
           <article>
-            <a href={`/projects/${item.slug}`} class="card-link" aria-label={item.name} />
             <div class="name-row">
               <h3>{item.name}</h3>
               {item.extUrl && (
@@ -57,26 +56,14 @@ import Nav from '../../components/Nav.astro';
   }
 
   article {
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
     padding: 1.75rem;
     background: #161616;
-    transition: background 0.15s;
-    cursor: pointer;
   }
 
-  article:hover { background: #1b1b1b; }
-
-  .card-link {
-    position: absolute;
-    inset: 0;
-    display: block;
-    z-index: 0;
-  }
-
-  .name-row {
+.name-row {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;

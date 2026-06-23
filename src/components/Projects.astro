@@ -10,7 +10,6 @@ const featured = items.filter(i => i.featured);
     <div class="grid">
       {featured.map((item: Item) => (
         <article>
-          <a href={`/projects/${item.slug}`} class="card-link" aria-label={item.name} />
           <div class="card-top">
             <div class="name-row">
               <h3>{item.name}</h3>
@@ -51,26 +50,14 @@ const featured = items.filter(i => i.featured);
   }
 
   article {
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 1.75rem;
     background: #161616;
-    transition: background 0.15s;
-    cursor: pointer;
   }
 
-  article:hover { background: #1b1b1b; }
-
-  .card-link {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    display: block;
-  }
-
-  .card-top { display: flex; flex-direction: column; gap: 0.4rem; }
+.card-top { display: flex; flex-direction: column; gap: 0.4rem; }
 
   .name-row {
     display: flex;
