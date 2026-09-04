@@ -59,11 +59,7 @@ const featured = items.filter(i => i.featured);
   .grid {
     display: flex;
     flex-direction: column;
-    gap: 1px;
-    border: 1px solid var(--subtle);
-    border-radius: 8px;
-    overflow: hidden;
-    background: var(--subtle);
+    gap: 1.25rem;
   }
 
   article {
@@ -72,6 +68,8 @@ const featured = items.filter(i => i.featured);
     gap: 1rem;
     padding: 1.75rem;
     background: #161616;
+    border: 1px solid var(--subtle);
+    border-radius: 8px;
   }
 
 .card-top { display: flex; flex-direction: column; gap: 0.4rem; }
@@ -93,7 +91,6 @@ const featured = items.filter(i => i.featured);
     font-size: 0.875rem;
     color: var(--muted);
     line-height: 1.65;
-    flex: 1;
   }
 
   .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
@@ -102,6 +99,7 @@ const featured = items.filter(i => i.featured);
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    margin-top: auto;
     padding-top: 0.75rem;
     border-top: 1px solid var(--subtle);
   }
