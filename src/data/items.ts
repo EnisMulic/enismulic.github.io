@@ -12,6 +12,7 @@ export interface Item {
   websiteUrl?: string;
   caseStudyUrl?: string;
   githubUrl?: string;
+  nugetUrl?: string;
   blogSlug?: string;
 }
 
@@ -51,7 +52,7 @@ export const items: Item[] = [
     slug: 'dictionary',
     featured: true,
     type: 'project',
-    name: 'Bosnian Dictionary Application',
+    name: 'Bosnian Dictionary',
     period: 'May 2025 – Present',
     tagline: 'rjecnik-liard.vercel.app',
     summary: 'OCR pipeline that converts a scanned PDF dictionary into a searchable web app, with a Next.js frontend and an admin dashboard for managing entries.',
@@ -121,7 +122,7 @@ export const items: Item[] = [
     name: 'Insurance Administration System',
     role: 'Fullstack / Data Engineer',
     period: 'May 2021 – Dec 2021',
-    summary: 'Full-stack administration system for guaranteed income wrap insurance products, including a refactored legacy cost calculation engine and automated end-to-end pipeline execution.',
+    summary: 'Administration system for guaranteed income wrap insurance products, including a refactored legacy cost calculation engine and automated end-to-end pipeline execution.',
     description: [
       'Built full-stack features for an administration system managing guaranteed income wrap insurance products, covering both the backend business logic and the frontend UI for operations staff.',
       'Refactored a legacy insurance cost calculation engine written in Azure SQL stored procedures, improving correctness and making it maintainable for future product changes.',
@@ -135,7 +136,7 @@ export const items: Item[] = [
     name: 'MSG-Z',
     period: 'Aug 2019 – Oct 2021',
     tagline: 'Discord community bot',
-    summary: 'Discord bot for a Bosnian university faculty server automating student lifecycle management: registration, academic year progression, and news scraping from university platforms.',
+    summary: 'Discord bot for a university faculty server automating student lifecycle management: registration, academic year progression, and news scraping from university platforms.',
     description: [
       'Built to manage a Discord server used by students at my university faculty, handling registration, role assignments for academic year progression, and moderation utilities that were too tedious to do manually.',
       'The most interesting part was the async scraper: it reverse-engineered the stateful ASP.NET login flow of the university\'s LMS to poll for new content and push it to Discord channels, so students got notifications without checking the platform manually.',
@@ -143,5 +144,21 @@ export const items: Item[] = [
     ],
     stack: ['Python', 'discord.py', 'PostgreSQL', 'SQLAlchemy', 'aiohttp', 'BeautifulSoup4', 'Heroku'],
     githubUrl: 'https://github.com/EnisMulic/MSG-Z',
+  },
+  {
+    slug: 'vertical-slice-minimal-api',
+    type: 'project',
+    name: 'Vertical Slice Minimal API Template',
+    period: 'Oct 2023 – Present',
+    tagline: 'dotnet new template',
+    summary: 'A .NET project template for scaffolding minimal APIs built around Vertical Slice Architecture, published to NuGet.',
+    description: [
+      'A `dotnet new` template that scaffolds a minimal API structured around Vertical Slice Architecture, so new projects start from a consistent, opinionated layout instead of the default ASP.NET starter.',
+      'Configurable at generation time: choose the git host (GitHub or Azure DevOps) for baseline CI workflows and PR templates, the database provider (MSSQL or PostgreSQL) with EF Core migrations, and an auth provider (Entra ID or JWT bearer via dotnet user-jwts).',
+      'Published on the NuGet Gallery and versioned alongside .NET releases, with GitHub Actions CI validating the template build on every change.',
+    ],
+    stack: ['.NET', 'ASP.NET Core', 'Entity Framework Core', 'NuGet', 'GitHub Actions'],
+    githubUrl: 'https://github.com/EnisMulic/VerticalSliceMinimalApi',
+    nugetUrl: 'https://www.nuget.org/packages/VerticalSliceMinimalApi',
   },
 ];
