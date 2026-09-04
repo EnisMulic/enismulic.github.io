@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const words = post.body.trim().split(/\s+/).length;
+const words = post.body!.trim().split(/\s+/).length;
 const readingTime = Math.max(1, Math.round(words / 200));
 ---
 <Layout title={post.data.title + " — Enis Mulić"} description={post.data.description}>
@@ -53,6 +53,12 @@ const readingTime = Math.max(1, Math.round(words / 200));
   .prose { font-size: 0.95rem; color: var(--muted); line-height: 1.8; max-width: 62ch; }
   .prose :global(h2) { font-size: 1.25rem; color: var(--fg); margin-block: 2rem 0.75rem; }
   .prose :global(p) { margin-bottom: 1.25rem; }
+  .prose :global(ul) { list-style: disc; margin: 0 0 1.25rem 1.25rem; }
+  .prose :global(ol) { list-style: decimal; margin: 0 0 1.25rem 1.25rem; }
+  .prose :global(li) { margin-bottom: 0.5rem; }
+  .prose :global(li)::marker { color: var(--muted); }
+  .prose :global(a) { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent); transition: text-decoration-color 0.15s; }
+  .prose :global(a:hover) { text-decoration-color: var(--accent); }
   .prose :global(code) { font-size: 0.85em; background: var(--subtle); padding: 0.1em 0.35em; border-radius: 3px; color: var(--fg); }
   .prose :global(pre) {
     position: relative;
