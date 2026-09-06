@@ -191,6 +191,22 @@ export const items: Item[] = [
     stack: ['C#', 'ASP.NET Core', 'Azure SQL', 'Azure Data Factory'],
   },
   {
+    slug: 'csharp-api-template',
+    type: 'project',
+    name: 'C# API Template',
+    period: 'Jul 2020 – Jan 2023',
+    tagline: 'Starter template',
+    summary: 'A layered ASP.NET Core API starter template, with a modular installer-based startup, JWT auth, Redis caching, health checks, and a generated client SDK.',
+    description: [
+      'Split into separate projects for domain, database, services, authorization, and the Web API itself, so a new API starts from a consistent layered structure instead of one flat project.',
+      'Startup configuration is broken into swappable installers (database, cache, email, health checks, AutoMapper, Swagger) registered through a single extension method, instead of one long Startup class.',
+      'JWT-based authentication with custom policy-based authorization requirements, Redis-backed caching, and a Refit-style client SDK interface for consuming the API from other projects.',
+      'Ships with a Dockerfile and docker-compose setup, an integration test project, and Travis CI configuration.',
+    ],
+    stack: ['C#', 'ASP.NET Core', 'Redis', 'SQL Server', 'Docker', 'Swagger'],
+    githubUrl: 'https://github.com/EnisMulic/CSharp-API-Template',
+  },
+  {
     slug: 'lyra',
     type: 'project',
     name: 'Lyra',
