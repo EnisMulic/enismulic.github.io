@@ -2,6 +2,7 @@ export interface Item {
   slug: string;
   featured?: boolean;
   type: 'work' | 'project';
+  school?: boolean;
   name: string;
   role?: string;
   period?: string;
@@ -164,6 +165,7 @@ export const items: Item[] = [
   {
     slug: 'rango',
     type: 'project',
+    school: true,
     name: 'Rango',
     period: 'Sep 2021 – Apr 2023',
     tagline: 'Discord community bot',
@@ -193,6 +195,7 @@ export const items: Item[] = [
   {
     slug: 'csharp-api-template',
     type: 'project',
+    school: true,
     name: 'C# API Template',
     period: 'Jul 2020 – Jan 2023',
     tagline: 'Starter template',
@@ -209,6 +212,7 @@ export const items: Item[] = [
   {
     slug: 'lyra',
     type: 'project',
+    school: true,
     name: 'Lyra',
     period: 'Mar 2020 – Jun 2022',
     tagline: 'School project',
@@ -240,6 +244,7 @@ export const items: Item[] = [
   {
     slug: 'msg-z',
     type: 'project',
+    school: true,
     name: 'MSG-Z',
     period: 'Aug 2019 – Oct 2021',
     tagline: 'Discord community bot',

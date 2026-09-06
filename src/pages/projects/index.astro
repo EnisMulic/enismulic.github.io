@@ -10,9 +10,22 @@ import Nav from '../../components/Nav.astro';
     <div class="container">
       <div class="header-row">
         <a href="/" class="back">← Back</a>
-        <button type="button" id="flip-all" class="flip-all" aria-label="Flip all cards" title="Flip all cards">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2.1l4 4-4 4"/><path d="M3 12.9V11a4 4 0 0 1 4-4h14"/><path d="M7 21.9l-4-4 4-4"/><path d="M21 11.1V13a4 4 0 0 1-4 4H3"/></svg>
-        </button>
+        <div class="header-actions">
+          <div class="filter-wrap">
+            <button type="button" id="filter-toggle" class="icon-btn" aria-label="Filter projects" title="Filter projects" aria-expanded="false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            </button>
+            <div class="filter-menu" id="filter-menu" hidden>
+              <button type="button" class="filter-option active" data-filter="all">All</button>
+              <button type="button" class="filter-option" data-filter="work">Work</button>
+              <button type="button" class="filter-option" data-filter="project">Personal</button>
+              <button type="button" class="filter-option" data-filter="school">School</button>
+            </div>
+          </div>
+          <button type="button" id="flip-all" class="icon-btn" aria-label="Flip all cards" title="Flip all cards">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2.1l4 4-4 4"/><path d="M3 12.9V11a4 4 0 0 1 4-4h14"/><path d="M7 21.9l-4-4 4-4"/><path d="M21 11.1V13a4 4 0 0 1-4 4H3"/></svg>
+          </button>
+        </div>
       </div>
       <p class="intro-note">
         A mix of paid work, side projects, school assignments, and a few things that never shipped.
@@ -20,7 +33,7 @@ import Nav from '../../components/Nav.astro';
       </p>
       <div class="grid">
         {items.map(item => (
-          <article class="card">
+          <article class="card" data-category={item.school ? 'school' : item.type}>
             <div class="card-inner">
               <div class="card-face card-front">
                 <button type="button" class="info-icon" aria-label={`Show more about ${item.name}`}>
@@ -89,6 +102,54 @@ import Nav from '../../components/Nav.astro';
   const flipAllBtn = document.getElementById('flip-all');
   const cards = document.querySelectorAll<HTMLElement>('.card');
 
+  const filterToggle = document.getElementById('filter-toggle');
+  const filterMenu = document.getElementById('filter-menu');
+  const filterOptions = document.querySelectorAll<HTMLButtonElement>('.filter-option');
+
+  filterToggle?.addEventListener('click', () => {
+    const isOpen = !filterMenu?.hasAttribute('hidden');
+    if (isOpen) {
+      filterMenu?.setAttribute('hidden', '');
+      filterToggle.setAttribute('aria-expanded', 'false');
+    } else {
+      filterMenu?.removeAttribute('hidden');
+      filterToggle.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as Node;
+    if (filterMenu && !filterMenu.hasAttribute('hidden') && !filterMenu.contains(target) && !filterToggle?.contains(target)) {
+      filterMenu.setAttribute('hidden', '');
+      filterToggle?.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && filterMenu && !filterMenu.hasAttribute('hidden')) {
+      filterMenu.setAttribute('hidden', '');
+      filterToggle?.setAttribute('aria-expanded', 'false');
+      filterToggle?.focus();
+    }
+  });
+
+  filterOptions.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const filter = opt.dataset.filter ?? 'all';
+
+      filterOptions.forEach(o => o.classList.toggle('active', o === opt));
+
+      cards.forEach(card => {
+        const matches = filter === 'all' || card.dataset.category === filter;
+        card.style.display = matches ? '' : 'none';
+      });
+
+      filterToggle?.classList.toggle('active', filter !== 'all');
+      filterMenu?.setAttribute('hidden', '');
+      filterToggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
   flipAllBtn?.addEventListener('click', () => {
     const anyUnflipped = Array.from(cards).some(card => !card.classList.contains('flipped'));
     cards.forEach(card => card.classList.toggle('flipped', anyUnflipped));
@@ -129,7 +190,12 @@ import Nav from '../../components/Nav.astro';
     transition: color 0.15s;
   }
 
-  .flip-all {
+  .header-actions {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .icon-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -144,14 +210,53 @@ import Nav from '../../components/Nav.astro';
     transition: color 0.15s, border-color 0.15s;
   }
 
-  .flip-all:hover {
+  .icon-btn:hover {
     color: var(--fg);
     border-color: var(--muted);
   }
 
-  .flip-all.active {
+  .icon-btn.active {
     color: var(--accent);
     border-color: var(--accent);
+  }
+
+  .filter-wrap {
+    position: relative;
+  }
+
+  .filter-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    min-width: 8rem;
+    padding: 0.35rem;
+    background: #161616;
+    border: 1px solid var(--subtle);
+    border-radius: 8px;
+  }
+
+  .filter-menu[hidden] { display: none; }
+
+  .filter-option {
+    text-align: left;
+    font-size: 0.82rem;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0.45rem 0.6rem;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .filter-option:hover { color: var(--fg); }
+
+  .filter-option.active {
+    color: var(--accent);
+    background: rgba(29, 78, 216, 0.1);
   }
 
   .back:hover { color: var(--fg); }
