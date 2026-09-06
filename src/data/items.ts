@@ -162,6 +162,21 @@ export const items: Item[] = [
     stack: ['C#', 'ASP.NET Core', 'Azure SQL', 'Azure Data Factory'],
   },
   {
+    slug: 'portfolio-site',
+    type: 'project',
+    name: 'Personal Website',
+    period: 'Jan 2020 – Present',
+    tagline: 'enismulic.github.io',
+    summary: 'This site. Now on its third rewrite: a zero-JS Astro build, after earlier versions on other stacks.',
+    description: [
+      'My personal site and portfolio, hosting my work history, projects, and blog. This is the third rewrite since 2020, migrated most recently from React + Vite to Astro to get a static, effectively zero-JS site by default.',
+      'Blog posts are Markdown files backed by an Astro content collection, and the whole site deploys to GitHub Pages through a GitHub Actions workflow.',
+    ],
+    stack: ['Astro', 'TypeScript'],
+    websiteUrl: 'https://enismulic.github.io',
+    githubUrl: 'https://github.com/EnisMulic/enismulic.github.io',
+  },
+  {
     slug: 'msg-z',
     type: 'project',
     name: 'MSG-Z',
