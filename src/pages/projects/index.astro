@@ -89,6 +89,7 @@ import Nav from '../../components/Nav.astro';
   }
 
   article {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -98,7 +99,19 @@ import Nav from '../../components/Nav.astro';
     border-radius: 8px;
   }
 
+  .index {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
   h3 {
+    padding-right: 2rem;
     font-family: var(--font-serif);
     font-size: 1rem;
     color: var(--fg);
