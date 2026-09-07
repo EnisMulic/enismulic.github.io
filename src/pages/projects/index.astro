@@ -2,6 +2,7 @@
 import { items } from '../../data/items';
 import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 ---
 
 <Layout title="Projects — Enis Mulić" description="All projects — work at RUBICON and personal builds.">
@@ -20,6 +21,7 @@ import Nav from '../../components/Nav.astro';
               <button type="button" class="filter-option" data-filter="work">Work</button>
               <button type="button" class="filter-option" data-filter="project">Personal</button>
               <button type="button" class="filter-option" data-filter="school">School</button>
+              <button type="button" class="filter-option" data-filter="random">???</button>
             </div>
           </div>
           <button type="button" id="flip-all" class="icon-btn" aria-label="Flip all cards" title="Flip all cards">
@@ -27,78 +29,48 @@ import Nav from '../../components/Nav.astro';
           </button>
         </div>
       </div>
-      <p class="intro-note">
+      <p class="intro-note" id="intro-note">
         A mix of paid work, side projects, school assignments, and a few things that never shipped.
         Am I proud of all of them? Not really. But they all took enough time or effort to be worth mentioning, at least for me.
       </p>
       <div class="grid">
-        {items.map(item => (
-          <article class="card" data-category={item.school ? 'school' : item.type}>
-            <div class="card-inner">
-              <div class="card-face card-front">
-                <button type="button" class="info-icon" aria-label={`Show more about ${item.name}`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                </button>
-                <h3>{item.name}</h3>
-                <p class="desc">{item.summary}</p>
-                {(item.websiteUrl || item.caseStudyUrl || item.blogSlug || item.githubUrl || item.nugetUrl) && <div class="links">
-                  {item.websiteUrl && (
-                    <a href={item.websiteUrl} target="_blank" rel="noopener" class="link">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                      Website
-                    </a>
-                  )}
-                  {item.caseStudyUrl && (
-                    <a href={item.caseStudyUrl} target="_blank" rel="noopener" class="link">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                      Case Study
-                    </a>
-                  )}
-                  {item.blogSlug && (
-                    <a href={`/blog/${item.blogSlug}`} class="link">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                      Case Study
-                    </a>
-                  )}
-                  {item.githubUrl && (
-                    <a href={item.githubUrl} target="_blank" rel="noopener" class="link">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.52 11.52 0 0 1 3-.405c1.02.005 2.045.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                      GitHub
-                    </a>
-                  )}
-                  {item.nugetUrl && (
-                    <a href={item.nugetUrl} target="_blank" rel="noopener" class="link">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                      NuGet
-                    </a>
-                  )}
-                </div>}
-              </div>
-              <div class="card-face card-back">
-                <button type="button" class="info-icon" aria-label={`Show less about ${item.name}`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                </button>
-                <h3>{item.name}</h3>
-                {item.period && <p class="back-period">{item.period}</p>}
-                <div class="tags">
-                  {item.stack.map(s => <span class="tag">{s}</span>)}
-                </div>
-              </div>
-            </div>
-          </article>
-        ))}
+        {items.map(item => <ProjectCard item={item} />)}
+      </div>
+
+      <div class="connections" id="connections-game" hidden>
+        <p class="connections-status" id="connections-status">Pick 3 that share a category.</p>
+        <div class="connections-grid" id="connections-grid"></div>
+        <div class="connections-actions">
+          <button type="button" id="connections-deselect" class="connections-btn" disabled>Deselect</button>
+          <button type="button" id="connections-submit" class="connections-btn connections-btn-primary" disabled>Check</button>
+        </div>
+        <p class="connections-attempts">
+          Attempts left:
+          <span class="connections-lives" id="connections-lives" aria-label="Mistakes remaining">
+            <span class="life-dot"></span>
+            <span class="life-dot"></span>
+            <span class="life-dot"></span>
+            <span class="life-dot"></span>
+          </span>
+        </p>
+      </div>
+
+      <div class="win-modal" id="win-modal" hidden>
+        <div class="win-modal-backdrop"></div>
+        <div class="win-modal-panel" role="dialog" aria-modal="true" aria-labelledby="win-modal-title">
+          <h2 id="win-modal-title">Solved it! 🎉</h2>
+          <p>You found all three groups.</p>
+          <div class="win-modal-actions">
+            <button type="button" id="win-modal-close" class="connections-btn">Close</button>
+            <button type="button" id="win-modal-continue" class="connections-btn connections-btn-primary">Continue</button>
+          </div>
+        </div>
       </div>
     </div>
   </main>
 </Layout>
 
 <script>
-  document.querySelectorAll<HTMLButtonElement>('.info-icon').forEach(btn => {
-    btn.addEventListener('click', () => {
-      btn.closest('.card')?.classList.toggle('flipped');
-    });
-  });
-
   const flipAllBtn = document.getElementById('flip-all');
   const cards = document.querySelectorAll<HTMLElement>('.card');
 
@@ -133,16 +105,227 @@ import Nav from '../../components/Nav.astro';
     }
   });
 
+  const grid = document.querySelector<HTMLElement>('.grid');
+  const introNote = document.getElementById('intro-note');
+  const connectionsGame = document.getElementById('connections-game');
+  const connectionsGrid = document.getElementById('connections-grid');
+  const connectionsStatus = document.getElementById('connections-status');
+  const connectionsSubmit = document.getElementById('connections-submit') as HTMLButtonElement | null;
+  const connectionsDeselect = document.getElementById('connections-deselect') as HTMLButtonElement | null;
+  const lifeDots = document.querySelectorAll<HTMLElement>('#connections-lives .life-dot');
+
+  const winModal = document.getElementById('win-modal');
+  const winModalClose = document.getElementById('win-modal-close');
+  const winModalContinue = document.getElementById('win-modal-continue');
+
+  winModalClose?.addEventListener('click', () => {
+    winModal?.setAttribute('hidden', '');
+  });
+
+  winModalContinue?.addEventListener('click', () => {
+    window.location.href = '/secret';
+  });
+
+  const CATEGORY_LABEL: Record<string, string> = { work: 'Work', project: 'Personal', school: 'School' };
+  const MAX_MISTAKES = 4;
+
+  type Tile = { id: number; name: string; category: string; sourceCard: HTMLElement };
+
+  let tiles: Tile[] = [];
+  let selectedIds = new Set<number>();
+  let groupedOrder: string[] = [];
+  let revealedOnLoss = new Set<string>();
+  let mistakes = 0;
+  let gameOver = false;
+
+  function buildPuzzle() {
+    if (!connectionsGrid) return;
+
+    const byCategory = new Map<string, HTMLElement[]>();
+    cards.forEach(card => {
+      const cat = card.dataset.category ?? '';
+      if (!byCategory.has(cat)) byCategory.set(cat, []);
+      byCategory.get(cat)?.push(card);
+    });
+
+    const picked: { name: string; category: string; sourceCard: HTMLElement }[] = [];
+    byCategory.forEach((list, category) => {
+      const shuffled = [...list].sort(() => Math.random() - 0.5);
+      shuffled.slice(0, 3).forEach(sourceCard => {
+        const name = sourceCard.querySelector('.card-front h3')?.textContent?.trim() ?? '';
+        picked.push({ name, category, sourceCard });
+      });
+    });
+    picked.sort(() => Math.random() - 0.5);
+
+    tiles = picked.map((t, i) => ({ id: i, ...t }));
+    selectedIds = new Set();
+    groupedOrder = [];
+    revealedOnLoss = new Set();
+    mistakes = 0;
+    gameOver = false;
+    if (connectionsStatus) connectionsStatus.textContent = 'Pick 3 that share a category.';
+    updateActionButtons();
+    lifeDots.forEach(dot => dot.classList.remove('used'));
+
+    render();
+  }
+
+  const scopeAttr = Array.from(connectionsGrid?.attributes ?? []).find(a => a.name.startsWith('data-astro-cid-'))?.name;
+
+  function stamp<T extends HTMLElement>(el: T): T {
+    if (scopeAttr) {
+      el.setAttribute(scopeAttr, '');
+      el.querySelectorAll('*').forEach(child => child.setAttribute(scopeAttr, ''));
+    }
+    return el;
+  }
+
+  function render() {
+    if (!connectionsGrid) return;
+    connectionsGrid.innerHTML = '';
+
+    groupedOrder.forEach(category => {
+      const row = stamp(document.createElement('div'));
+      row.className = 'connections-row' + (revealedOnLoss.has(category) ? ' revealed' : '');
+      row.dataset.category = category;
+
+      const label = stamp(document.createElement('span'));
+      label.className = 'connections-row-label';
+      label.textContent = CATEGORY_LABEL[category] ?? category;
+      row.appendChild(label);
+
+      const itemsWrap = stamp(document.createElement('span'));
+      itemsWrap.className = 'connections-row-items';
+      itemsWrap.textContent = tiles.filter(t => t.category === category).map(t => t.name).join(', ');
+      row.appendChild(itemsWrap);
+
+      connectionsGrid.appendChild(row);
+    });
+
+    tiles.filter(t => !groupedOrder.includes(t.category)).forEach(tile => {
+      const wrap = stamp(document.createElement('div'));
+      wrap.className = 'connections-tile' + (selectedIds.has(tile.id) ? ' selected' : '');
+      wrap.setAttribute('role', 'button');
+      wrap.setAttribute('tabindex', '0');
+      wrap.setAttribute('aria-label', `Select ${tile.name}`);
+      if (gameOver) wrap.setAttribute('aria-disabled', 'true');
+
+      const clone = tile.sourceCard.cloneNode(true) as HTMLElement;
+      clone.classList.remove('flipped');
+      clone.querySelectorAll('.info-icon, .desc, .links, .card-back').forEach(el => el.remove());
+      wrap.appendChild(clone);
+
+      if (!gameOver) {
+        wrap.addEventListener('click', () => onTileClick(tile.id));
+        wrap.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onTileClick(tile.id);
+          }
+        });
+      }
+
+      connectionsGrid.appendChild(wrap);
+    });
+  }
+
+  function onTileClick(id: number) {
+    if (gameOver) return;
+
+    if (selectedIds.has(id)) {
+      selectedIds.delete(id);
+    } else if (selectedIds.size < 3) {
+      selectedIds.add(id);
+    }
+
+    updateActionButtons();
+    render();
+  }
+
+  function updateActionButtons() {
+    if (connectionsSubmit) connectionsSubmit.disabled = selectedIds.size !== 3;
+    if (connectionsDeselect) connectionsDeselect.disabled = selectedIds.size === 0;
+  }
+
+  function updateLives() {
+    lifeDots.forEach((dot, i) => dot.classList.toggle('used', i < mistakes));
+  }
+
+  connectionsDeselect?.addEventListener('click', () => {
+    selectedIds = new Set();
+    updateActionButtons();
+    render();
+  });
+
+  connectionsSubmit?.addEventListener('click', () => {
+    if (selectedIds.size !== 3) return;
+
+    const selectedTiles = tiles.filter(t => selectedIds.has(t.id));
+    const [first, ...rest] = selectedTiles;
+    const isMatch = rest.every(t => t.category === first.category);
+
+    if (isMatch) {
+      groupedOrder.push(first.category);
+      selectedIds = new Set();
+      updateActionButtons();
+
+      if (groupedOrder.length === byCategoryCount()) {
+        gameOver = true;
+        if (connectionsStatus) connectionsStatus.textContent = 'Solved.';
+        winModal?.removeAttribute('hidden');
+      }
+      render();
+    } else {
+      mistakes += 1;
+      updateLives();
+
+      const shakeEls = Array.from(connectionsGrid?.querySelectorAll<HTMLButtonElement>('.connections-tile.selected') ?? []);
+      shakeEls.forEach(t => t.classList.add('shake'));
+
+      window.setTimeout(() => {
+        selectedIds = new Set();
+        updateActionButtons();
+
+        if (mistakes >= MAX_MISTAKES) {
+          gameOver = true;
+          tiles.forEach(t => {
+            if (!groupedOrder.includes(t.category)) revealedOnLoss.add(t.category);
+          });
+          groupedOrder = Array.from(new Set([...groupedOrder, ...tiles.map(t => t.category)]));
+          if (connectionsStatus) connectionsStatus.textContent = 'Out of guesses.';
+        }
+
+        render();
+      }, 400);
+    }
+  });
+
+  function byCategoryCount() {
+    return new Set(Array.from(cards).map(c => c.dataset.category)).size;
+  }
+
   filterOptions.forEach(opt => {
     opt.addEventListener('click', () => {
       const filter = opt.dataset.filter ?? 'all';
 
       filterOptions.forEach(o => o.classList.toggle('active', o === opt));
 
-      cards.forEach(card => {
-        const matches = filter === 'all' || card.dataset.category === filter;
-        card.style.display = matches ? '' : 'none';
-      });
+      if (filter === 'random') {
+        cards.forEach(card => { card.style.display = ''; });
+        grid?.setAttribute('hidden', '');
+        introNote?.setAttribute('hidden', '');
+        connectionsGame?.removeAttribute('hidden');
+        buildPuzzle();
+      } else {
+        connectionsGame?.setAttribute('hidden', '');
+        grid?.removeAttribute('hidden');
+        introNote?.removeAttribute('hidden');
+        cards.forEach(card => {
+          const matches = filter === 'all' || card.dataset.category === filter;
+          card.style.display = matches ? '' : 'none';
+        });
+      }
 
       filterToggle?.classList.toggle('active', filter !== 'all');
       filterMenu?.setAttribute('hidden', '');
@@ -275,100 +458,224 @@ import Nav from '../../components/Nav.astro';
     .grid { grid-template-columns: 1fr; }
   }
 
-  .card {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    perspective: 1500px;
-  }
+  .grid[hidden] { display: none; }
 
-  .info-icon {
-    position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    z-index: 2;
-    display: flex;
-    background: none;
-    border: none;
-    padding: 0;
+  .connections[hidden] { display: none; }
+
+  .connections-status {
+    font-size: 0.9rem;
     color: var(--muted);
-    cursor: pointer;
-    transition: color 0.15s;
+    margin-bottom: 1.5rem;
   }
 
-  .info-icon:hover { color: var(--accent); }
-
-  .card-inner {
-    position: relative;
-    flex: 1;
-    transform-style: preserve-3d;
-    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
-  }
-
-  .card.flipped .card-inner { transform: rotateY(180deg); }
-
-  .card-face {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding: 1.75rem;
-    background: #161616;
-    border: 1px solid var(--subtle);
-    border-radius: 8px;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-
-  .card-front { position: relative; height: 100%; }
-
-  .card-back {
-    position: absolute;
-    inset: 0;
-    overflow-y: auto;
-    transform: rotateY(180deg);
-  }
-
-  h3 {
-    padding-right: 2rem;
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    color: var(--fg);
-    line-height: 1.3;
-  }
-
-  .desc {
-    font-size: 0.875rem;
-    color: var(--muted);
-    line-height: 1.65;
-  }
-
-  .back-period {
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-style: italic;
-  }
-
-  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: auto;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--subtle);
-  }
-
-  .link {
+  .connections-attempts {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
-    font-size: 0.8rem;
-    font-weight: 500;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.82rem;
     color: var(--muted);
-    transition: color 0.15s;
-    white-space: nowrap;
   }
 
-  .link:hover { color: var(--accent); }
+  .connections-lives {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .life-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--muted);
+  }
+
+  .life-dot.used {
+    background: var(--subtle);
+  }
+
+  .connections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 600px) {
+    .connections-grid { gap: 0.4rem; }
+  }
+
+  .connections-tile {
+    display: flex;
+    flex-direction: column;
+    min-height: 4.5rem;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 0 0 2px transparent;
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+
+  @media (min-width: 601px) {
+    .connections-tile { min-height: 7.5rem; }
+  }
+
+  .connections-tile > :global(.card) {
+    flex: 1;
+  }
+
+  .connections-tile :global(.card-face) {
+    padding: 0.6rem;
+    gap: 0.25rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .connections-tile :global(.card-face h3) {
+    padding-right: 0;
+    font-size: 0.75rem;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  @media (min-width: 601px) {
+    .connections-tile :global(.card-face) { padding: 1.1rem; }
+    .connections-tile :global(.card-face h3) { font-size: 1rem; font-weight: 600; }
+  }
+
+  .connections-tile[aria-disabled='true'] { cursor: default; }
+
+  .connections-tile:hover:not([aria-disabled='true']) {
+    box-shadow: 0 0 0 2px var(--muted);
+  }
+
+  .connections-tile.selected {
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .connections-row {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.35rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    color: #161616;
+    background: var(--subtle);
+  }
+
+  .connections-row[data-category='work'] { background: #a3e6a1; }
+  .connections-row[data-category='project'] { background: #9ec5f5; }
+  .connections-row[data-category='school'] { background: #f5d565; }
+
+  .connections-row.revealed {
+    opacity: 0.7;
+    outline: 2px solid #161616;
+    outline-offset: -2px;
+  }
+
+  .connections-row-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .connections-row-items {
+    font-size: 0.9rem;
+  }
+
+  .connections-tile.shake {
+    animation: connections-shake 0.4s ease;
+  }
+
+  @keyframes connections-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+
+  .connections-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .connections-btn {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--fg);
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1.4rem;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+  }
+
+  .connections-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .connections-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .connections-btn-primary {
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .connections-btn-primary:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.24);
+  }
+
+  .win-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .win-modal[hidden] { display: none; }
+
+  .win-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .win-modal-panel {
+    position: relative;
+    max-width: 26rem;
+    width: calc(100% - 2.5rem);
+    padding: 2rem;
+    text-align: center;
+    background: #161616;
+    border: 1px solid var(--subtle);
+    border-radius: 12px;
+  }
+
+  .win-modal-panel h2 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: var(--fg);
+    margin-bottom: 0.5rem;
+  }
+
+  .win-modal-panel p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .win-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+  }
 </style>
