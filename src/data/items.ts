@@ -53,10 +53,10 @@ export const items: Item[] = [
     slug: 'dictionary',
     featured: true,
     type: 'project',
-    name: 'Bosnian Dictionary',
+    name: 'Rječnik',
     period: 'May 2025 – Present',
     tagline: 'rjecnik-liard.vercel.app',
-    summary: 'OCR pipeline that converts a scanned PDF dictionary into a searchable web app, with a Next.js frontend and an admin dashboard for managing entries.',
+    summary: 'A digital Bosnian dictionary, with a Next.js frontend and an admin dashboard for managing entries.',
     description: [
       'The source material was a scanned PDF with no machine-readable text. I built a custom OCR pipeline in Python to extract and structure words, definitions, and word forms into a relational schema.',
       'The pipeline runs on GitHub Actions, feeding data into a Supabase (PostgreSQL) database designed for fast full-text search.',
