@@ -317,7 +317,7 @@ import ProjectCard from '../../components/ProjectCard.astro';
         grid?.setAttribute('hidden', '');
         introNote?.setAttribute('hidden', '');
         connectionsGame?.removeAttribute('hidden');
-        buildPuzzle();
+        if (tiles.length === 0 || gameOver) buildPuzzle();
       } else {
         connectionsGame?.setAttribute('hidden', '');
         grid?.removeAttribute('hidden');
