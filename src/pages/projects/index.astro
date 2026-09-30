@@ -273,6 +273,7 @@ import ProjectCard from '../../components/ProjectCard.astro';
       if (groupedOrder.length === byCategoryCount()) {
         gameOver = true;
         if (connectionsStatus) connectionsStatus.textContent = 'Solved.';
+        try { localStorage.setItem('secret-unlocked', '1'); } catch {}
         winModal?.removeAttribute('hidden');
       }
       render();
