@@ -1,3 +1,5 @@
+.env
+
 # generated types
 .astro/
 dist/
