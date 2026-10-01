@@ -9,8 +9,8 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 export type Book = CollectionEntry<'books'>['data'];
 
 // Record fields:
-// - mbid: MusicBrainz release group ID, from the album's page on musicbrainz.org
-// - releaseId: MusicBrainz release ID for a specific pressing; its cover is used instead of mbid's
+// - discogsReleaseId: the number in a Discogs release URL (discogs.com/release/<id>-...)
+// - cover: that release's front image, fetched from Discogs at build time
 export type Vinyl = CollectionEntry<'records'>['data'];
 
 export type CoverCrop = NonNullable<Book['coverCrop']>;
@@ -27,11 +27,6 @@ export interface CollectionItem {
 
 const bookCover = (b: Book) =>
   b.coverUrl ?? (b.coverId ? `https://covers.openlibrary.org/b/id/${b.coverId}-L.jpg` : undefined);
-
-const vinylCover = (v: Vinyl) =>
-  v.releaseId ? `https://coverartarchive.org/release/${v.releaseId}/front-500`
-  : v.mbid ? `https://coverartarchive.org/release-group/${v.mbid}/front-500`
-  : undefined;
 
 const byOrder = <T extends { order: number }>(a: T, b: T) => a.order - b.order;
 
@@ -56,7 +51,7 @@ export async function getVinylItems(): Promise<CollectionItem[]> {
     title: v.title,
     by: v.year ? `${v.artist}, ${v.year}` : v.artist,
     note: v.note,
-    cover: vinylCover(v),
+    cover: v.cover,
     wishlist: v.status === 'wishlist',
   })));
 }
