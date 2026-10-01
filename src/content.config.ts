@@ -20,16 +20,21 @@ type NotionProperty = { type: string; [key: string]: any };
 type NotionPage = { id: string; properties: Record<string, NotionProperty> };
 
 // Loads NOTION_API_TOKEN from .env locally; in CI it comes from the environment.
+// Pull requests from Dependabot and forks get no secrets, so a missing token only fails the build
+// when NOTION_REQUIRED is 'true' (set by CI for deploys); otherwise the collections are left empty.
 function notionToken() {
   try { process.loadEnvFile(); } catch {}
   const token = process.env.NOTION_API_TOKEN;
-  if (!token) throw new Error('NOTION_API_TOKEN is not set. Add it to .env, or to the CI environment.');
-  return token;
+  if (token) return token;
+  if (process.env.NOTION_REQUIRED === 'true') throw new Error('NOTION_API_TOKEN is not set, and this build deploys. Add it to the CI environment.');
+  console.warn('NOTION_API_TOKEN is not set; books and records will be empty.');
+  return undefined;
 }
 
 // All rows of a data source, oldest first, following pagination.
 async function notionRows(dataSourceId: string): Promise<NotionPage[]> {
   const token = notionToken();
+  if (!token) return [];
   const rows: NotionPage[] = [];
   let cursor: string | undefined;
   do {
@@ -109,18 +114,44 @@ const books = defineCollection({
   }),
 });
 
+// Front cover of a Discogs release, or undefined (with a warning) if it can't be fetched.
+// Requests go one at a time; without a token Discogs allows 25 a minute, so a 429 waits a minute and retries once.
+async function discogsCover(releaseId: string, retried = false): Promise<string | undefined> {
+  const res = await fetch(`https://api.discogs.com/releases/${releaseId}`, {
+    headers: { 'User-Agent': 'enismulic.github.io/1.0 +https://enismulic.github.io' },
+  });
+  if (res.status === 429 && !retried) {
+    await new Promise(resolve => setTimeout(resolve, 60_000));
+    return discogsCover(releaseId, true);
+  }
+  if (!res.ok) {
+    console.warn(`Discogs release ${releaseId}: no cover (HTTP ${res.status})`);
+    return undefined;
+  }
+  const release = await res.json();
+  const images: { type: string; uri: string }[] = release.images ?? [];
+  return (images.find(i => i.type === 'primary') ?? images[0])?.uri;
+}
+
 const records = defineCollection({
-  loader: async () => (await notionRows(NOTION_VINYL)).map((page, order) => ({
-    id: page.id,
-    order,
-    title: text(page, 'Title'),
-    artist: text(page, 'Artist'),
-    year: number(page, 'Year'),
-    status: status(page),
-    note: text(page, 'Note'),
-    mbid: text(page, 'MBID'),
-    releaseId: text(page, 'Release ID'),
-  })),
+  loader: async () => {
+    const rows = [];
+    for (const [order, page] of (await notionRows(NOTION_VINYL)).entries()) {
+      const discogsReleaseId = text(page, 'DiscogsReleaseId');
+      rows.push({
+        id: page.id,
+        order,
+        title: text(page, 'Title'),
+        artist: text(page, 'Artist'),
+        year: number(page, 'Year'),
+        status: status(page),
+        note: text(page, 'Note'),
+        discogsReleaseId,
+        cover: discogsReleaseId ? await discogsCover(discogsReleaseId) : undefined,
+      });
+    }
+    return rows;
+  },
   schema: z.object({
     order,
     title: z.string(),
@@ -128,8 +159,8 @@ const records = defineCollection({
     year: z.number().int().optional(),
     status: status_,
     note: z.string().optional(),
-    mbid: z.string().optional(),
-    releaseId: z.string().optional(),
+    discogsReleaseId: z.string().optional(),
+    cover: z.url().optional(),
   }),
 });
 
