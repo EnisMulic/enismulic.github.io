@@ -4,7 +4,7 @@ on:
   push:
     branches: [master]
   # Keep this as pull_request, not pull_request_target: the latter runs fork PRs with this repo's
-  # secrets, so a malicious PR could read NOTION_API_TOKEN. PRs without the token build with empty
+  # secrets, so a malicious PR could read NOTION_API_TOKEN or NYT_COOKIE. PRs without the token build with empty
   # collections instead (see notionToken in src/content.config.ts).
   pull_request:
     branches: [master]
@@ -28,6 +28,8 @@ jobs:
         env:
           # Read-only token for the secret page's Books and Vinyl data in Notion
           NOTION_API_TOKEN: ${{ secrets.NOTION_API_TOKEN }}
+          # NYT-S session cookie for the secret page's Connections streak
+          NYT_COOKIE: ${{ secrets.NYT_COOKIE }}
           # Deploys must have the data; pull requests (no secrets for Dependabot or forks) build without it
           DATA_REQUIRED: ${{ github.ref == 'refs/heads/master' }}
 
