@@ -19,17 +19,19 @@ const NOTION_VINYL = '3eca0400-5d2c-8022-9e35-000bfa397aa0';
 type NotionProperty = { type: string; [key: string]: any };
 type NotionPage = { id: string; properties: Record<string, NotionProperty> };
 
-// Loads NOTION_API_TOKEN from .env locally; in CI it comes from the environment.
-// Pull requests from Dependabot and forks get no secrets, so a missing token only fails the build
-// when NOTION_REQUIRED is 'true' (set by CI for deploys); otherwise the collections are left empty.
-function notionToken() {
+// Reads a setting from .env locally, or from the environment in CI.
+// Pull requests from Dependabot and forks get no secrets, so a missing value only fails the build
+// when DATA_REQUIRED is 'true' (set by CI for deploys); otherwise the collections it feeds are left empty.
+function setting(name: string, feeds: string): string | undefined {
   try { process.loadEnvFile(); } catch {}
-  const token = process.env.NOTION_API_TOKEN;
-  if (token) return token;
-  if (process.env.NOTION_REQUIRED === 'true') throw new Error('NOTION_API_TOKEN is not set, and this build deploys. Add it to the CI environment.');
-  console.warn('NOTION_API_TOKEN is not set; books and records will be empty.');
+  const value = process.env[name];
+  if (value) return value;
+  if (process.env.DATA_REQUIRED === 'true') throw new Error(`${name} is not set, and this build deploys. Add it to the CI environment.`);
+  console.warn(`${name} is not set; ${feeds} will be empty.`);
   return undefined;
 }
+
+const notionToken = () => setting('NOTION_API_TOKEN', 'books and records');
 
 // All rows of a data source, oldest first, following pagination.
 async function notionRows(dataSourceId: string): Promise<NotionPage[]> {
