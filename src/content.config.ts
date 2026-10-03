@@ -15,6 +15,7 @@ const blog = defineCollection({
 // Notion data sources for the secret page's collections. IDs aren't secret; the token is (see .env).
 const NOTION_BOOKS = '3eca0400-5d2c-8029-bca9-000b92400183';
 const NOTION_VINYL = '3eca0400-5d2c-8022-9e35-000bfa397aa0';
+const NOTION_LETTERBOXD = '3eea0400-5d2c-800e-ba15-000b8a738ac4';
 
 type NotionProperty = { type: string; [key: string]: any };
 type NotionPage = { id: string; properties: Record<string, NotionProperty> };
@@ -207,4 +208,17 @@ const connections = defineCollection({
   }),
 });
 
-export const collections = { blog, books, records, connections };
+// One entry, 'stats': Letterboxd profile totals, copied by hand into a one-row Notion database.
+const letterboxd = defineCollection({
+  loader: async () => {
+    const [page] = await notionRows(NOTION_LETTERBOXD);
+    if (!page) return [];
+    return [{ id: 'stats', films: number(page, 'Films'), thisYear: number(page, 'This Year') }];
+  },
+  schema: z.object({
+    films: z.number().int(),
+    thisYear: z.number().int(),
+  }),
+});
+
+export const collections = { blog, books, records, connections, letterboxd };
