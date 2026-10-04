@@ -9,6 +9,8 @@ on:
   pull_request:
     branches: [master]
   workflow_dispatch:
+  schedule:
+    - cron: '0 23 * * *'
 
 jobs:
   build:
@@ -26,7 +28,7 @@ jobs:
 
       - run: npm run build
         env:
-          # Read-only token for the secret page's Books and Vinyl data in Notion
+          # Read-only token for the secret page's Books, Vinyl and Letterboxd data in Notion
           NOTION_API_TOKEN: ${{ secrets.NOTION_API_TOKEN }}
           # NYT-S session cookie for the secret page's Connections streak
           NYT_COOKIE: ${{ secrets.NYT_COOKIE }}
