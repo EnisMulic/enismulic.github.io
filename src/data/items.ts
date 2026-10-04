@@ -116,6 +116,21 @@ export const items: Item[] = [
     caseStudyUrl: 'https://www.rubicon-world.com/cases/all-in-one-enterprise-data-and-analytics-portal',
   },
   {
+    slug: 'employee-survey-platform',
+    type: 'work',
+    name: 'Employee Survey Platform',
+    role: 'Backend / DevOps Engineer',
+    period: 'Jul 2022 – Aug 2022',
+    summary: 'Platform for HR teams to survey employees and send each of them an individual report based on the results.',
+    description: [
+      'HR teams build surveys and send them out to employees. Once responses are in, the platform generates an individual report for each employee and delivers it to them.',
+      'Built the backend in TypeScript on Nest.js and Node.js, with PostgreSQL for persistence.',
+      'Provisioned and managed the AWS infrastructure as code with Pulumi.',
+      'The codebase was organized as an Nx monorepo, using Nx for builds across projects.',
+    ],
+    stack: ['TypeScript', 'Node.js', 'Nest.js', 'PostgreSQL', 'Pulumi', 'AWS', 'Nx'],
+  },
+  {
     slug: 'qapp',
     type: 'project',
     name: 'QR Menu Ordering Platform',
