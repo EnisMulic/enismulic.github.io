@@ -1,4 +1,6 @@
 ---
+import { themes } from './themes';
+
 interface Props {
   title?: string;
   description?: string;
@@ -17,6 +19,24 @@ const { title = 'Enis Mulić', description = 'Software engineer building cloud-n
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet" />
+    <!-- Applies the theme before the page renders, so it never flashes the wrong one: the visitor's saved choice, or
+         else the theme whose season includes today, or else the default. Nav.astro has the menu that changes it. -->
+    <script is:inline define:vars={{ themes: themes.map(t => ({ id: t.id, season: t.season })) }}>
+      var saved;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      var now = new Date();
+      var today = ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2);
+      var inSeason = function (t) {
+        if (!t.season) return false;
+        var from = t.season[0], to = t.season[1];
+        return from <= to ? today >= from && today <= to : today >= from || today <= to;
+      };
+      var seasonal = themes.find(inSeason);
+      var theme = themes.find(function (t) { return t.id === saved; }) || seasonal;
+      if (theme) document.documentElement.dataset.theme = theme.id;
+      // Lets the theme menu offer the seasonal theme to everyone while it's in season
+      if (seasonal) document.documentElement.dataset.season = seasonal.id;
+    </script>
     <script is:inline data-goatcounter="https://enismulic.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </head>
   <body>
@@ -27,12 +47,111 @@ const { title = 'Enis Mulić', description = 'Software engineer building cloud-n
 <style is:global>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
+  /* Themes. Dark is the default, so the site still works with JavaScript off. To add a theme, add a block like
+     these and an entry to themes.ts. */
+  :root,
+  :root[data-theme='dark'] {
+    color-scheme: dark;
     --bg: #0f0f0f;
     --fg: #ededed;
     --muted: #888888;
     --subtle: #222222;
     --accent: #60a5fa;
+    /* Cards, menus and panels that sit on the background */
+    --surface: #161616;
+    /* Borders on hover */
+    --border-strong: #333333;
+  }
+
+  /* Extras a theme can turn on; off by default */
+  :root {
+    /* Big display text: the hero name and widget numbers */
+    --heading: var(--fg);
+    /* Shadow on hovered widgets */
+    --glow: none;
+    /* Image layered over the page background */
+    --backdrop: none;
+    /* Falling particles (snow, confetti) on their own layer. Every tile size must divide 240px, so the layer loops
+       seamlessly when it has fallen 240px; --particles-speed is the time that takes. */
+    --particles: none;
+    --particles-display: none;
+    --particles-speed: 20s;
+  }
+
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --bg: #ececec;
+    --fg: #111111;
+    --muted: #606060;
+    --subtle: #d8d8d8;
+    --accent: #1d4ed8;
+    --surface: #f4f4f4;
+    --border-strong: #b8b8b8;
+  }
+
+  /* Purple-black with a pumpkin-orange accent, orange display text, glowing widgets and a faint orange and purple haze */
+  :root[data-theme='halloween'] {
+    color-scheme: dark;
+    --bg: #110b0f;
+    --fg: #fbeee0;
+    --muted: #b49b8b;
+    --subtle: #34202b;
+    --accent: #ff8a1f;
+    --surface: #1b1117;
+    --border-strong: #b8571c;
+    --heading: var(--accent);
+    --glow: 0 0 28px -6px color-mix(in srgb, var(--accent) 65%, transparent);
+    --backdrop:
+      radial-gradient(ellipse 90% 55% at 50% -10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent),
+      radial-gradient(ellipse 60% 45% at 100% 100%, rgba(139, 61, 255, 0.12), transparent);
+  }
+
+  /* Pine green with a red accent, gold display text, warm glowing widgets and a faint snowfall */
+  :root[data-theme='christmas'] {
+    color-scheme: dark;
+    --bg: #0b1711;
+    --fg: #f4f1e8;
+    --muted: #a9b8a8;
+    --subtle: #1f3327;
+    --accent: #ff3b3b;
+    --surface: #11221a;
+    --border-strong: #d42c2c;
+    --heading: #f2c14e;
+    --glow: 0 0 28px -6px color-mix(in srgb, #f2c14e 55%, transparent);
+    --particles:
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.35) 1px, transparent 1.6px) 0 0 / 120px 120px,
+      radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.22) 1.4px, transparent 2px) 0 0 / 240px 240px;
+    --particles-display: block;
+    --particles-speed: 18s;
+    --backdrop:
+      radial-gradient(ellipse 90% 55% at 50% -10%, rgba(242, 193, 78, 0.12), transparent),
+      radial-gradient(ellipse 60% 45% at 0% 100%, rgba(255, 59, 59, 0.16), transparent);
+  }
+
+  /* Birthday: deep violet with a lilac accent, pale purple display text, glowing widgets and a scatter of confetti */
+  :root[data-theme='me'] {
+    color-scheme: dark;
+    --bg: #120c1c;
+    --fg: #f4eefc;
+    --muted: #b4a4cc;
+    --subtle: #2c2040;
+    --accent: #b98aff;
+    --surface: #1c1329;
+    --border-strong: #7c4bd1;
+    --heading: #e0c3ff;
+    --glow: 0 0 28px -6px color-mix(in srgb, var(--accent) 65%, transparent);
+    --particles:
+      radial-gradient(circle at 15% 25%, rgba(255, 128, 191, 0.4) 1.5px, transparent 2.2px) 0 0 / 120px 120px,
+      radial-gradient(circle at 65% 60%, rgba(255, 214, 102, 0.35) 1.5px, transparent 2.2px) 0 0 / 240px 240px,
+      radial-gradient(circle at 40% 85%, rgba(102, 224, 214, 0.3) 1.5px, transparent 2.2px) 30px 0 / 80px 80px;
+    --particles-display: block;
+    --particles-speed: 26s;
+    --backdrop:
+      radial-gradient(ellipse 90% 55% at 50% -10%, rgba(185, 138, 255, 0.2), transparent),
+      radial-gradient(ellipse 60% 45% at 100% 100%, rgba(255, 128, 191, 0.1), transparent);
+  }
+
+  :root {
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
     --font-serif: 'Lora', Georgia, serif;
     --max-w: 720px;
@@ -41,11 +160,36 @@ const { title = 'Enis Mulić', description = 'Software engineer building cloud-n
   html { font-size: 16px; scroll-behavior: smooth; }
 
   body {
-    background: var(--bg);
+    background: var(--backdrop), var(--bg);
+    background-attachment: fixed;
     color: var(--fg);
     font-family: var(--font-sans);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* The particle layer: 240px taller than the screen, sliding down one 240px loop at a time. Moving it with transform
+     keeps the animation off the main thread. */
+  body::before {
+    content: '';
+    display: var(--particles-display);
+    position: fixed;
+    top: -240px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background: var(--particles);
+    pointer-events: none;
+    animation: particles-fall var(--particles-speed) linear infinite;
+  }
+
+  @keyframes particles-fall {
+    to { transform: translateY(240px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body::before { animation: none; }
   }
 
   a { color: inherit; text-decoration: none; }

@@ -417,7 +417,7 @@ import ProjectCard from '../../modules/projects/ProjectCard.astro';
     flex-direction: column;
     min-width: 8rem;
     padding: 0.35rem;
-    background: #161616;
+    background: var(--surface);
     border: 1px solid var(--subtle);
     border-radius: 8px;
   }
@@ -440,7 +440,7 @@ import ProjectCard from '../../modules/projects/ProjectCard.astro';
 
   .filter-option.active {
     color: var(--accent);
-    background: rgba(29, 78, 216, 0.1);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
   }
 
   .back:hover { color: var(--fg); }
@@ -608,7 +608,7 @@ import ProjectCard from '../../modules/projects/ProjectCard.astro';
     font-size: 0.82rem;
     font-weight: 600;
     color: var(--fg);
-    background: rgba(255, 255, 255, 0.08);
+    background: color-mix(in srgb, var(--fg) 8%, transparent);
     border: none;
     border-radius: 999px;
     padding: 0.6rem 1.4rem;
@@ -617,7 +617,7 @@ import ProjectCard from '../../modules/projects/ProjectCard.astro';
   }
 
   .connections-btn:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.14);
+    background: color-mix(in srgb, var(--fg) 14%, transparent);
   }
 
   .connections-btn:disabled {
@@ -626,11 +626,11 @@ import ProjectCard from '../../modules/projects/ProjectCard.astro';
   }
 
   .connections-btn-primary {
-    background: rgba(255, 255, 255, 0.18);
+    background: color-mix(in srgb, var(--fg) 18%, transparent);
   }
 
   .connections-btn-primary:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.24);
+    background: color-mix(in srgb, var(--fg) 24%, transparent);
   }
 
   .win-modal {
@@ -656,7 +656,7 @@ import ProjectCard from '../../modules/projects/ProjectCard.astro';
     width: calc(100% - 2.5rem);
     padding: 2rem;
     text-align: center;
-    background: #161616;
+    background: var(--surface);
     border: 1px solid var(--subtle);
     border-radius: 12px;
   }

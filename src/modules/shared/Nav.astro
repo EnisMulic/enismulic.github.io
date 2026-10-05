@@ -1,8 +1,23 @@
 ---
+import { themes } from './themes';
+
 const navLinks = [
   { href: '/projects', label: 'Projects' },
 ];
+
+const iconAttrs = {
+  xmlns: 'http://www.w3.org/2000/svg', width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor',
+  'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true',
+};
+
+// Shows the toggle's icon for the current theme; with none set yet, the default (first) theme's.
+const iconCss = [
+  `html:not([data-theme]) nav .theme-toggle [data-icon='${themes[0].id}']`,
+  ...themes.map(t => `html[data-theme='${t.id}'] nav .theme-toggle [data-icon='${t.id}']`),
+].join(',\n') + ' { display: block; }';
 ---
+
+<style is:global set:html={iconCss}></style>
 <nav>
   <div class="container">
     <a href="/" class="logo">EM</a>
@@ -10,9 +25,95 @@ const navLinks = [
       {navLinks.map(link => (
         <li><a href={link.href}>{link.label}</a></li>
       ))}
+      <li class="theme-wrap">
+        <button type="button" class="theme-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="theme-menu" aria-label="Change theme" title="Change theme">
+          <!-- One icon per theme; CSS below shows the current one, so it's right before any script runs -->
+          {themes.map(t => <svg data-icon={t.id} {...iconAttrs} set:html={t.icon} />)}
+        </button>
+        <div class="theme-menu" id="theme-menu" hidden>
+          {themes.map(t => (
+            <button type="button" class="theme-option" data-theme-option={t.id} data-locked={t.locked ? '' : undefined} aria-pressed="false" hidden={t.locked}>
+              <svg {...iconAttrs} set:html={t.icon} />
+              <span class="theme-label">{t.label}</span>
+              {t.locked && <span class="new-badge" hidden>New</span>}
+            </button>
+          ))}
+        </div>
+      </li>
     </ul>
   </div>
 </nav>
+
+<script>
+  const root = document.documentElement;
+  const toggle = document.querySelector<HTMLButtonElement>('nav .theme-toggle')!;
+  const menu = document.querySelector<HTMLElement>('nav .theme-menu')!;
+  const options = [...menu.querySelectorAll<HTMLButtonElement>('.theme-option')];
+
+  const current = () => root.dataset.theme ?? options[0].dataset.themeOption;
+
+  // The secret page's unlock flag, the same one SecretGate.astro checks
+  let unlocked = false;
+  try { unlocked = localStorage.getItem('secret-unlocked') === '1'; } catch {}
+
+  // Unlocking reveals the locked themes. Until the visitor first opens the menu after that, the toggle shows a dot
+  // and the newly available themes are marked "New".
+  let fresh = false;
+  try { fresh = unlocked && localStorage.getItem('themes-seen') !== '1'; } catch {}
+  const badges = [...menu.querySelectorAll<HTMLElement>('.new-badge')];
+  toggle.classList.toggle('has-new', fresh);
+
+  // Marks the current theme in the menu, shows locked themes if they're unlocked, in season or in use, and names the
+  // current theme in the toggle's label
+  const sync = () => {
+    options.forEach(o => {
+      const id = o.dataset.themeOption;
+      if (o.hasAttribute('data-locked')) o.hidden = !unlocked && id !== root.dataset.season && id !== current();
+    });
+    options.forEach(o => o.setAttribute('aria-pressed', String(o.dataset.themeOption === current())));
+    const label = options.find(o => o.dataset.themeOption === current())?.querySelector('.theme-label')?.textContent;
+    toggle.setAttribute('aria-label', `Theme: ${label}. ${fresh ? 'New themes unlocked. ' : ''}Change theme`);
+  };
+
+  const setOpen = (open: boolean) => {
+    menu.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    // The "New" marks show for this one opening; the dot goes as soon as the menu opens
+    badges.forEach(b => (b.hidden = !(open && fresh)));
+    if (open && fresh) {
+      try { localStorage.setItem('themes-seen', '1'); } catch {}
+      toggle.classList.remove('has-new');
+    }
+    if (!open && fresh) {
+      fresh = false;
+      sync();
+    }
+  };
+
+  sync();
+  toggle.addEventListener('click', () => setOpen(menu.hidden));
+
+  options.forEach(option => option.addEventListener('click', () => {
+    const theme = option.dataset.themeOption!;
+    root.dataset.theme = theme;
+    try { localStorage.setItem('theme', theme); } catch {}
+    sync();
+    setOpen(false);
+    toggle.focus();
+  }));
+
+  document.addEventListener('click', e => {
+    const target = e.target as Node;
+    if (!menu.hidden && !menu.contains(target) && !toggle.contains(target)) setOpen(false);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !menu.hidden) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+</script>
 
 <style>
   nav {
@@ -22,7 +123,7 @@ const navLinks = [
     right: 0;
     z-index: 100;
     padding: 1.25rem 0;
-    background: rgba(15,15,15,0.85);
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--subtle);
   }
@@ -56,6 +157,107 @@ const navLinks = [
 
   li a:hover {
     color: var(--fg);
+  }
+
+  .theme-wrap { position: relative; }
+
+  .theme-toggle {
+    position: relative;
+    display: flex;
+    padding: 0.25rem;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+
+  .theme-toggle:hover,
+  .theme-toggle[aria-expanded='true'] { color: var(--fg); }
+
+  .theme-toggle svg { display: none; }
+
+  /* Dot for newly unlocked themes */
+  .theme-toggle.has-new::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 2px var(--bg);
+    animation: new-pulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes new-pulse {
+    50% { box-shadow: 0 0 0 2px var(--bg), 0 0 0 5px color-mix(in srgb, var(--accent) 35%, transparent); }
+  }
+
+  .new-badge {
+    margin-left: auto;
+    padding: 0.05rem 0.4rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    border-radius: 999px;
+  }
+
+  .new-badge[hidden] { display: none; }
+
+  .theme-menu {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 9rem;
+    padding: 0.35rem;
+    background: var(--surface);
+    border: 1px solid var(--subtle);
+    border-radius: 8px;
+  }
+
+  .theme-menu[hidden] { display: none; }
+
+  .theme-option {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.6rem;
+    font: inherit;
+    font-size: 0.82rem;
+    text-align: left;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .theme-option[hidden] { display: none; }
+
+  .theme-option:hover { color: var(--fg); }
+
+  .theme-option[aria-pressed='true'] {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+
+  .theme-toggle:focus-visible,
+  .theme-option:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle.has-new::after { animation: none; }
   }
 
   @media (max-width: 600px) {
