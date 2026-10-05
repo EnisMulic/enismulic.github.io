@@ -240,15 +240,16 @@ function takenAt(exif: { DateTimeOriginal?: unknown } | undefined) {
   return m ? `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}` : undefined;
 }
 
-// Place from the filename, which ends in _City_Country after the camera's date and time. The last part is the
+// Place from the filename, which ends in _City_Country after whatever name the camera gave it. Leading parts with
+// digits or a camera prefix (IMG, PXL, DSC...) are the camera's name and are dropped. The last part left is the
 // country; hyphens stand for spaces, as in "New-York_United-States".
-// "20241006_152723_Milan_Italy.jpg" gives "Milan, Italy"; "20241006_152723.jpg" gives nothing.
+// "20241006_152723_Milan_Italy.jpg" and "1000013547_Milan_Italy.jpg" give "Milan, Italy"; "20241006_152723.jpg" gives nothing.
 function placeFromName(key: string) {
-  const name = key.split('/').pop()!.replace(PHOTO_TYPES, '').replace(/^\d{8}_\d{6}/, '');
-  const parts = name.split('_').filter(Boolean).map(part => part.replace(/-/g, ' '));
+  const parts = key.split('/').pop()!.replace(PHOTO_TYPES, '').split('_').filter(Boolean);
+  while (parts.length && (/\d/.test(parts[0]) || /^(IMG|PXL|DSC|DSCN|DCIM|PHOTO)$/i.test(parts[0]))) parts.shift();
   if (parts.length === 0) return undefined;
-  const country = parts.pop()!;
-  return parts.length ? `${parts.join(' ')}, ${country}` : country;
+  const [country, ...city] = parts.map(part => part.replace(/-/g, ' ')).reverse();
+  return city.length ? `${city.reverse().join(' ')}, ${country}` : country;
 }
 
 // Every photo in the bucket, oldest first by the date it was taken, falling back to when it was uploaded.
