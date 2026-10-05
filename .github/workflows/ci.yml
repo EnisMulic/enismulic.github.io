@@ -5,7 +5,7 @@ on:
     branches: [master]
   # Keep this as pull_request, not pull_request_target: the latter runs fork PRs with this repo's
   # secrets, so a malicious PR could read NOTION_API_TOKEN, NYT_COOKIE or the R2 keys. PRs without the token build with empty
-  # collections instead (see notionToken in src/content.config.ts).
+  # collections instead (see notionToken in src/modules/secret/content.ts).
   pull_request:
     branches: [master]
   workflow_dispatch:

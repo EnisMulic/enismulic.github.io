@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Nav from '../../components/Nav.astro';
+import Layout from '../../modules/shared/Layout.astro';
+import Nav from '../../modules/shared/Nav.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);

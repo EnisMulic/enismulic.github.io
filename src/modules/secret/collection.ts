@@ -1,4 +1,4 @@
-// Books and records come from Notion at build time; see the `books` and `records` collections in src/content.config.ts.
+// Books and records come from Notion at build time; see the `books` and `records` collections in ./content.ts.
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 // Book fields:
