@@ -7,6 +7,7 @@ A grid of widgets. Each one lives in `widgets/<name>/`: `content.ts` loads its d
 | Books, Records, Letterboxd | Notion databases (`NOTION_API_TOKEN`) |
 | NYT Connections | NYT Games (`NYT_COOKIE`; replace it when the build says it expired) |
 | Photos | Cloudflare R2 `album` bucket (`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`) |
+| Exercises (bench, squat, overhead press, deadlift, 5K) | Edited by hand in `widgets/exercises/exercises.ts` |
 
 **Photos:** upload resized photos through the Cloudflare dashboard, named `<anything>_City_Country.jpg` (hyphens for spaces, e.g. `New-York_United-States`). The date comes from the photo's EXIF data. Strip GPS before uploading, since the files are public.
 
