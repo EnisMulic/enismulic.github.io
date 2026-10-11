@@ -15,7 +15,7 @@ const crop = (page: NotionPage) => {
 
 // Fields:
 // - isbn: ISBN-13 of the edition owned or wanted, digits only
-// - coverId: Open Library cover ID, from the book's record on openlibrary.org
+// - coverId: Open Library cover ID, from the book's record on openlibrary.org; without it, or coverUrl, the cover is looked up by ISBN
 // - coverUrl: any image URL, for editions without an Open Library cover; used instead of coverId
 // - coverCrop: part of the cover image to show, as percentages of its width and height; for mockup images
 export const books = defineCollection({
