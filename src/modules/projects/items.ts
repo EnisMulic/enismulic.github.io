@@ -54,7 +54,7 @@ export const items: Item[] = [
     slug: 'slibe',
     featured: true,
     type: 'project',
-    name: 'Panini Sticker Swap Platform',
+    name: 'Slibe',
     period: 'May 2026 – Oct 2026',
     tagline: 'slibe.online',
     summary: 'Platform for FIFA World Cup 2026 Panini collectors to track sticker albums and find swap partners.',
