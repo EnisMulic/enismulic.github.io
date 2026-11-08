@@ -19,6 +19,38 @@ export interface Item {
 
 export const items: Item[] = [
   {
+    slug: 'workspace-architecture-enablement',
+    type: 'work',
+    name: 'Workspace Architecture Enablement',
+    role: 'Platform Engineer',
+    period: 'Jul 2026 – Present',
+    summary: 'Self-service system for provisioning landing zones and workspaces, letting use case teams get a ready-to-use environment for developing their data products.',
+    description: [
+      'Use case teams request a landing zone and the workspaces on top of it themselves, and the platform provisions and prepares everything they need to start building data products.',
+      'Developed a Python API that orchestrates landing zone provisioning and workspace preparation.',
+      'Rewrote the legacy PowerShell environment provisioning API and extended the Configuration Store API to fit the new workspace concept, and contributed to the organization\'s shared Terraform modules.',
+      'Led the writing of onboarding documentation used by 50+ engineers.',
+    ],
+    stack: ['Python', 'Terraform', 'PowerShell'],
+  },
+  {
+    slug: 'the-quiet-party',
+    type: 'work',
+    name: 'The Quiet Party',
+    role: 'Full Stack Developer',
+    period: 'Jul 2026 – Sep 2026',
+    tagline: 'thequietparty.com',
+    summary: 'Nonpartisan research platform for US federal public records, letting users search what politicians actually said, compare them side by side, and share the sourced record.',
+    description: [
+      'The platform collects press releases and floor speeches from every member of Congress and presents them verbatim, with sources and no commentary, so users see the record rather than a take on it.',
+      'Users search by politician and topic, browse the House and Senate, and compare members side by side, with daily search and compare limits on the free tier and paid plans handled through Stripe.',
+      'The frontend is built with React on top of a Node.js and Fastify API backed by PostgreSQL, with Python handling the ingestion of public records into the database.',
+      'Built across the full stack, including a CMS for site content, an admin dashboard for managing the platform, transactional email through Resend, and deployment on Cloudflare.',
+    ],
+    stack: ['React', 'Node.js', 'Fastify', 'Python', 'PostgreSQL', 'Stripe', 'Resend', 'Cloudflare'],
+    websiteUrl: 'https://thequietparty.com',
+  },
+  {
     slug: 'slibe',
     featured: true,
     type: 'project',
