@@ -19,6 +19,19 @@ export interface Item {
 
 export const items: Item[] = [
   {
+    slug: 'vegapak',
+    type: 'project',
+    name: 'Vega-Pak',
+    tagline: 'vegapak.ba',
+    summary: 'Website for Vega-Pak, a Sarajevo-based family business importing, packing and wholesaling cocoa, rice, spices and food raw materials.',
+    description: [
+      'A single-page site presenting the company, its services (import, wholesale, packing, bulk and packaged goods) and its product range, including its own Dukat seasoning brand.',
+      'Products are grouped by category with filtering and search, and every section leads to a quote request form that collects the company, contact details, product of interest and approximate quantity.',
+    ],
+    stack: ['Next.js'],
+    websiteUrl: 'https://vegapak.ba/',
+  },
+  {
     slug: 'workspace-architecture-enablement',
     type: 'work',
     name: 'Workspace Architecture Enablement',
