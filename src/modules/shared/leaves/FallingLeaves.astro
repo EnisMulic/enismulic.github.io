@@ -1,0 +1,30 @@
+---
+// Falling leaves while the Halloween theme is on. They start and stop as the theme changes, the leaf code is only
+// downloaded when it's needed, and nothing moves for visitors who ask for reduced motion.
+---
+
+<script>
+  import type { FallingLeaves } from './falling-leaves';
+
+  const root = document.documentElement;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let leaves: FallingLeaves | undefined;
+  let wanted = false;
+
+  const sync = async () => {
+    wanted = root.dataset.theme === 'halloween' && !reducedMotion.matches;
+    if (!wanted) {
+      leaves?.destroy();
+      leaves = undefined;
+      return;
+    }
+    if (leaves) return;
+    const { FallingLeaves } = await import('./falling-leaves');
+    // The theme may have changed again while the code loaded
+    if (wanted && !leaves) leaves = new FallingLeaves();
+  };
+
+  sync();
+  new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  reducedMotion.addEventListener('change', sync);
+</script>

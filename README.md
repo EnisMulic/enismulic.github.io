@@ -25,7 +25,8 @@ src/
     projects/       project card and items.ts, the list of work and projects
     blog/           blog collection definition
     secret/         secret page widgets and their data loaders (see its README)
-    shared/         Layout and Nav, used by every page
+    shared/         Layout, Nav and the themes, used by every page
+      leaves/       falling leaves for the Halloween theme (see Credits)
   content/blog/     blog posts as Markdown
   content.config.ts imports each module's collections and registers them with Astro
 ```
@@ -53,6 +54,10 @@ Add a Markdown file to `src/content/blog/` with `title`, `description` and `pubD
 | `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY` | Photo album widget (read-only Cloudflare R2 API token) |
 
 Locally these go in `.env`; in CI they're repository secrets.
+
+## Credits
+
+The Halloween theme's falling leaves (`src/modules/shared/leaves/`) are ported from [falling-leaves](https://github.com/ernkerr/falling-leaves) by ernkerr, used under the MIT License. The leaf shapes and motion are theirs; this copy drops the React component and options API and adds starting and stopping with the theme.
 
 ## Deployment
 

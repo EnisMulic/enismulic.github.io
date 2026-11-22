@@ -24,9 +24,10 @@ export const themes: Theme[] = [
     icon: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>',
   },
   {
+    // October and November, with falling leaves
     id: 'halloween',
     label: 'Halloween',
-    season: ['10-01', '10-31'],
+    season: ['10-01', '11-30'],
     locked: true,
     icon: '<path d="M12 7V4a2 2 0 0 1 2-2"/><path d="M12 7c-2.5-1.5-6-1-8 1.5s-2 7 0 10 5.5 3.5 8 2c2.5 1.5 6 1 8-2s2-7.5 0-10-5.5-3-8-1.5z"/><path d="M12 7c-1.5 2.5-1.5 11 0 13.5"/>',
   },

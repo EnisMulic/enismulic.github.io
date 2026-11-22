@@ -1,4 +1,5 @@
 ---
+import FallingLeaves from './leaves/FallingLeaves.astro';
 import { themes } from './themes';
 
 interface Props {
@@ -41,6 +42,7 @@ const { title = 'Enis Mulić', description = 'Software engineer building cloud-n
   </head>
   <body>
     <slot />
+    <FallingLeaves />
   </body>
 </html>
 
@@ -89,7 +91,8 @@ const { title = 'Enis Mulić', description = 'Software engineer building cloud-n
     --border-strong: #b8b8b8;
   }
 
-  /* Burnt orange-black with a pumpkin-orange accent, orange display text, glowing widgets and a warm orange haze */
+  /* Burnt orange-black with a pumpkin-orange accent, orange display text, glowing widgets, a warm orange haze and
+     falling leaves (drawn by leaves/FallingLeaves.astro) */
   :root[data-theme='halloween'] {
     color-scheme: dark;
     --bg: #160b04;
