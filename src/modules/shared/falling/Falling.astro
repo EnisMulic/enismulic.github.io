@@ -1,0 +1,37 @@
+---
+// Falling leaves in the Halloween theme and snow in the Christmas one. They start, stop and swap as the theme
+// changes, an effect's code is only downloaded when it's needed, and nothing moves for visitors who ask for reduced
+// motion.
+---
+
+<script>
+  import type { Effect, Falling } from './falling';
+
+  // Theme id to its effect
+  const effects: Record<string, () => Promise<Effect>> = {
+    halloween: () => import('./leaves').then(m => m.leaves),
+    christmas: () => import('./snow').then(m => m.snow),
+  };
+
+  const root = document.documentElement;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let running: { theme: string; falling: Falling } | undefined;
+  let wanted: string | undefined;
+
+  const sync = async () => {
+    const theme = root.dataset.theme ?? '';
+    wanted = theme in effects && !reducedMotion.matches ? theme : undefined;
+    if (running?.theme === wanted) return;
+    running?.falling.destroy();
+    running = undefined;
+    if (!wanted) return;
+    const target = wanted;
+    const [effect, { Falling }] = await Promise.all([effects[target](), import('./falling')]);
+    // The theme may have changed again while the code loaded
+    if (wanted === target && !running) running = { theme: target, falling: new Falling(effect) };
+  };
+
+  sync();
+  new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  reducedMotion.addEventListener('change', sync);
+</script>

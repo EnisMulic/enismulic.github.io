@@ -1,5 +1,5 @@
 ---
-import FallingLeaves from './leaves/FallingLeaves.astro';
+import Falling from './falling/Falling.astro';
 import { themes } from './themes';
 
 interface Props {
@@ -42,7 +42,7 @@ const { title = 'Enis Mulić', description = 'Software engineer building cloud-n
   </head>
   <body>
     <slot />
-    <FallingLeaves />
+    <Falling />
   </body>
 </html>
 
@@ -73,7 +73,7 @@ const { title = 'Enis Mulić', description = 'Software engineer building cloud-n
     --glow: none;
     /* Image layered over the page background */
     --backdrop: none;
-    /* Falling particles (snow, confetti) on their own layer. Every tile size must divide 240px, so the layer loops
+    /* Falling CSS particles (confetti) on their own layer. Every tile size must divide 240px, so the layer loops
        seamlessly when it has fallen 240px; --particles-speed is the time that takes. */
     --particles: none;
     --particles-display: none;
@@ -92,7 +92,7 @@ const { title = 'Enis Mulić', description = 'Software engineer building cloud-n
   }
 
   /* Burnt orange-black with a pumpkin-orange accent, orange display text, glowing widgets, a warm orange haze and
-     falling leaves (drawn by leaves/FallingLeaves.astro) */
+     falling leaves (drawn by falling/Falling.astro) */
   :root[data-theme='halloween'] {
     color-scheme: dark;
     --bg: #160b04;
@@ -110,7 +110,8 @@ const { title = 'Enis Mulić', description = 'Software engineer building cloud-n
       radial-gradient(ellipse 50% 40% at 0% 100%, rgba(139, 61, 255, 0.06), transparent);
   }
 
-  /* Deep cranberry with a pine-green accent, gold display text, warm glowing widgets and a faint snowfall */
+  /* Deep cranberry with a pine-green accent, gold display text, warm glowing widgets and falling snow (drawn by
+     falling/Falling.astro) */
   :root[data-theme='christmas'] {
     color-scheme: dark;
     --bg: #17070a;
@@ -122,11 +123,6 @@ const { title = 'Enis Mulić', description = 'Software engineer building cloud-n
     --border-strong: #2e9d5a;
     --heading: #f2c14e;
     --glow: 0 0 28px -6px color-mix(in srgb, var(--accent) 60%, transparent);
-    --particles:
-      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.35) 1px, transparent 1.6px) 0 0 / 120px 120px,
-      radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.22) 1.4px, transparent 2px) 0 0 / 240px 240px;
-    --particles-display: block;
-    --particles-speed: 18s;
     --backdrop:
       radial-gradient(ellipse 90% 55% at 50% -10%, rgba(255, 59, 59, 0.2), transparent),
       radial-gradient(ellipse 60% 45% at 0% 100%, rgba(242, 193, 78, 0.08), transparent),

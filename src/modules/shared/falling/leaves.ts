@@ -1,6 +1,8 @@
-// Leaf pictures, each drawn once onto a small canvas in one color and then scaled for every leaf that uses it.
+// Falling autumn leaves for the Halloween theme. Each leaf picture is drawn once onto a small canvas in one color
+// and then scaled for every leaf that uses it.
 // Ported from falling-leaves by ernkerr (MIT): https://github.com/ernkerr/falling-leaves
-import { DEFAULT_PROFILE, type MotionProfile } from './leaf';
+import type { Effect } from './falling';
+import { DEFAULT_PROFILE, type MotionProfile } from './motion';
 
 export type LeafShape = 'maple' | 'oak' | 'ginkgo' | 'birch' | 'oval';
 
@@ -163,9 +165,15 @@ function sprite(color: string, shape: LeafShape) {
   return canvas;
 }
 
-// One picture per shape and color, with how leaves of that shape move
-export function sprites(shapes: LeafShape[]) {
-  return shapes.flatMap(shape =>
+// Maple twice, so it's the most common leaf
+const SHAPES: LeafShape[] = ['maple', 'maple', 'oak', 'ginkgo', 'birch'];
+
+export const leaves: Effect = {
+  count: 24,
+  opacity: 0.85,
+  motion: { size: [14, 28], speed: [0.5, 1.3], wind: [-0.3, 0.8], sway: [0.4, 1.4], rotationSpeed: [-1.5, 1.5] },
+  // One picture per shape and color, with how leaves of that shape move
+  sprites: () => SHAPES.flatMap(shape =>
     (shape === 'ginkgo' ? GOLD : AUTUMN).map(color => ({ image: sprite(color, shape), profile: MOTION[shape] ?? DEFAULT_PROFILE })),
-  );
-}
+  ),
+};
