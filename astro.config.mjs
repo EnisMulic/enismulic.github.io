@@ -1,4 +1,4 @@
-import { defineConfig, passthroughImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import rehypeExternalLinks from 'rehype-external-links';
 
@@ -7,7 +7,8 @@ export default defineConfig({
   integrations: [sitemap()],
   output: 'static',
   image: {
-    service: passthroughImageService(),
+    // Remote images (photos, covers) come from many hosts; the build resizes them to WebP (see src/modules/secret/lib/image.ts)
+    remotePatterns: [{ protocol: 'https' }],
   },
   markdown: {
     rehypePlugins: [

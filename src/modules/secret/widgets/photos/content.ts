@@ -4,8 +4,9 @@ import { AwsClient } from 'aws4fetch';
 import exifr from 'exifr';
 import { order, setting } from '../../lib/content';
 
-// Cloudflare R2 bucket for the secret page's photo album. Photos are uploaded through the Cloudflare dashboard,
-// already resized, and the build lists whatever is in the bucket. None of these are secret; the API token is (see .env).
+// Cloudflare R2 bucket for the secret page's photo album. Photos are uploaded through the Cloudflare dashboard at
+// full size; the build lists whatever is in the bucket and the page shows resized copies (see PhotosModal.astro).
+// None of these are secret; the API token is (see .env).
 const R2_ACCOUNT_ID = 'f0663c2fc98e1355c81969f7ffcabb77';
 const R2_BUCKET = 'album';
 // The bucket's public URL, e.g. https://pub-xxxx.r2.dev
