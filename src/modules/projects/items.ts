@@ -32,9 +32,9 @@ export const items: Item[] = [
     websiteUrl: 'https://vegapak.ba/',
   },
   {
-    slug: 'workspace-architecture-enablement',
+    slug: 'workspace-architecture-value-enablement',
     type: 'work',
-    name: 'Workspace Architecture Enablement',
+    name: 'Workspace Architecture Value Enablement',
     role: 'Platform Engineer',
     period: 'Jul 2026 – Present',
     summary: 'Self-service system for provisioning landing zones and workspaces, letting use case teams get a ready-to-use environment for developing their data products.',
